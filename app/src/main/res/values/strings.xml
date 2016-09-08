@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Handy</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">设置</string>
+    <string name="action_aboutme">关于我</string>
+    <string name="write_diary">日记本</string>
+    <string name="view_diary">日记本</string>
+    <string name="write_memo">备忘录</string>
+    <string name="view_memo">备忘录</string>
+    <string name="view_cipher">密码本</string>
+    <string name="settings_lock">功能加锁</string>
+    <string name="settings_lock_diary">日记本加锁</string>
+    <string name="settings_lock_memo">备忘录加锁</string>
+    <string name="settings_lock_cipher">密码本加锁</string>
+    <string name="password_alter">修改唯一密码</string>
+    <string name="back">〈返回</string>
+    <string name="btn_negative">取消</string>
+    <string name="btn_positive">确定</string>
+    <string name="hint_input_again">再输入一次</string>
+    <string name="hint_input_first">字母或数字的组合</string>
+    <string name="alarm_title">闹铃提醒:</string>
+    <string name="alarm_btn_ok">知道了</string>
+</resources>
