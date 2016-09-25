@@ -1,39 +1,33 @@
-package com.example.chen.memo;
+package com.example.chen.memo.view.dialog;
 
-/**
- * Created by chen on 16-7-6.
- */
-
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.chen.memo.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-/*自定义对话框
-*
- *  */
-public class CustomDialog extends Dialog {
+/**
+ * Created by cdc on 16-9-23.
+ */
+public class PasswordDialog extends Dialog {
+
     private EditText eText;
     private Button positiveButton, negativeButton;
 
-    public CustomDialog(Context context) {
+    public PasswordDialog(Context context) {
         super(context);
-        setTitle("请输入密码");
-        //setCustomDialog();
+        setTitle("");
+        setCustomDialog();
     }
 
-    public void setCustomDialog() {
+    private void setCustomDialog() {
 
         View mView = LayoutInflater.from(getContext()).inflate(R.layout.custom_dialog, null);
         positiveButton = (Button) mView.findViewById(R.id.positive);
@@ -62,18 +56,6 @@ public class CustomDialog extends Dialog {
         return eText;
     }
 
-    @Override
-    public void setContentView(int layoutResID) {
-    }
-
-    @Override
-    public void setContentView(View view, LayoutParams params) {
-    }
-
-    @Override
-    public void setContentView(View view) {
-    }
-
     /**
      * 确定键监听器
      *
@@ -92,4 +74,6 @@ public class CustomDialog extends Dialog {
         negativeButton.setOnClickListener(listener);
 
     }
+
+
 }

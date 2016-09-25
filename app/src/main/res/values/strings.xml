@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Handy</string>
+    <string name="app_name">简记</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -22,4 +22,7 @@
     <string name="hint_input_first">字母或数字的组合</string>
     <string name="alarm_title">闹铃提醒:</string>
     <string name="alarm_btn_ok">知道了</string>
+    <string name="key_password">bdpq_unique_pwd</string>
+    <string name="error_pwd_text">密码输入错误</string>
+    <string name="first_enter">首次进入,请设置唯一密码</string>
 </resources>

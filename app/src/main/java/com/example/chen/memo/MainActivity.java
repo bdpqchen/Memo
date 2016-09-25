@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
-
+//        MyApplication.getDbversion();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity
     };
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        //System.out.println("------------------");
         if (keyCode == android.view.KeyEvent.KEYCODE_BACK) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
         return super.onKeyDown(keyCode, event);
-//        return false;
     }
 
     private void exit() {
@@ -99,7 +97,6 @@ public class MainActivity extends AppCompatActivity
             mHandler.sendEmptyMessageDelayed(0, 2000);
         } else {
             app.finishAll();
-            //this.finish();
         }
     }
 
@@ -229,8 +226,6 @@ public class MainActivity extends AppCompatActivity
                 String input_pwd = String.valueOf(editText.getText());
                 try{
                     String pwd = SimpleCrypto.enCrypto(input_pwd, "unique_pwd");
-                    //Log.i("unique_pwd",unique_pwd);
-                    //Log.i("pwd",pwd);
                     if(pwd.equals(unique_pwd) && !input_pwd.equals("")){
                         dialog.dismiss();
                         //密码验证成功

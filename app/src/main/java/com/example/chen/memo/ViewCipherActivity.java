@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -58,6 +59,8 @@ public class ViewCipherActivity extends Activity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //ArrayMap<String, String> map = (ArrayMap<String, String>) listView.getItemAtPosition(position);
                 HashMap<String, String> map = (HashMap<String, String>) listView.getItemAtPosition(position);
                 Intent intent = new Intent();
                 intent.putExtra("name",map.get("name"));
@@ -133,15 +136,16 @@ public class ViewCipherActivity extends Activity{
     }
 
     private List<HashMap<String, Object>> getData(){
-        ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, Object>> data = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor=db.query("cipher",new String[]{"name","account","value","_id"},"validity = ?",new String[]{"1"},null,null,"_id desc");
         while(cursor.moveToNext()){
-            HashMap<String, Object> map = new HashMap<String,Object>();
+            HashMap<String, Object> map = new HashMap<>();
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String account = cursor.getString(cursor.getColumnIndex("account"));
             String value = cursor.getString(cursor.getColumnIndex("value"));
             String pid = cursor.getString(cursor.getColumnIndex("_id"));
+            ArrayList arrayList = new ArrayList();
 
                 map.put("name", name);
                 map.put("account",account);

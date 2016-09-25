@@ -1,15 +1,15 @@
-package com.example.chen.memo;
+package com.example.chen.memo.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.chen.memo.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,14 +17,12 @@ import java.util.TimerTask;
 /**
  * Created by chen on 16-7-7.
  */
-public class PasswordDialog extends Dialog{
+public class SetupPasswordDialog extends Dialog{
     private EditText editText1,editText2;
     private Button positiveButton, negativeButton;
 
-    public PasswordDialog(Context context) {
+    public SetupPasswordDialog(Context context) {
         super(context);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //setTitle("ddddd");
         setPasswordDialog();
     }
 
@@ -58,15 +56,6 @@ public class PasswordDialog extends Dialog{
 
     @Override
     public void setContentView(int layoutResID) {
-    }
-
-    public void setTitle1(String titleText){
-        setTitle(titleText);
-        //View mView = LayoutInflater.from(getContext()).inflate(R.layout.password_dialog, null);
-        //title.setText(titleText);
-        //super.setTitle(titleText);
-        //setTitle(titleText);
-        //super.setContentView(mView);
     }
 
     @Override

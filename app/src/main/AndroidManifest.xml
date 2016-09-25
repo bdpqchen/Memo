@@ -4,42 +4,44 @@ package="com.example.chen.memo">
 
 <application
     android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
+    android:icon="@mipmap/jianji_logo"
     android:label="@string/app_name"
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar"
-    android:name=".MyApplication"
+    android:name=".application.CustomApplication"
     >
     <activity
-        android:name=".MainActivity"
+        android:name=".view.splash.SplashActivity"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/SplashTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
+    <activity
+        android:name=".MainActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
     <activity android:name=".DiaryActivity"
-        android:windowSoftInputMode="adjustResize"
-        ></activity>
-    <activity android:name=".ViewDiaryActivity"></activity>
+        android:windowSoftInputMode="adjustResize" />
+    <activity android:name=".ViewDiaryActivity"/>
     <activity
         android:name=".DetailActivity"
-        android:windowSoftInputMode="adjustResize"
-        ></activity>
+        android:windowSoftInputMode="adjustResize" />
     <activity android:name=".MemoActivity">
         <receiver
             android:name=".OneShotAlarm"
             android:process=":remote" />
     </activity>
-    <activity android:name=".ViewMemoActivity"></activity>
-    <activity android:name=".NewActActivity"></activity>
-    <activity android:name=".SettingsActivity"></activity>
-    <activity android:name=".ViewCipherActivity"></activity>
-    <activity android:name=".CipherDetailActivity"></activity>
-    <activity android:name=".MusicActivity"></activity>
+    <activity android:name=".ViewMemoActivity"/>
+    <activity android:name=".NewActActivity"/>
+    <activity android:name=".SettingsActivity"/>
+    <activity android:name=".ViewCipherActivity"/>
+    <activity android:name=".CipherDetailActivity"/>
+    <activity android:name=".MusicActivity"/>
     <receiver android:name="com.example.chen.memo.MyReceiver" />
 </application>
+
 <uses-permission android:name="android.permission.VIBRATE"/>
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 <uses-permission android:name="android.permission.SET_TIME_ZONE"/>
