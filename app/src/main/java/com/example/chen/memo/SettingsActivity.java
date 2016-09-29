@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -13,9 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chen.memo.view.dialog.PasswordDialog;
+
+*/
 /**
  * Created by chen on 16-7-7.
- */
+ *//*
+
 public class SettingsActivity extends Activity {
 
     private CheckBox diary_cbox,memo_cbox,cipher_cbox;
@@ -87,11 +92,13 @@ public class SettingsActivity extends Activity {
                                 editor.commit();
                                 dialog.dismiss();
                                 Toast.makeText(SettingsActivity.this,"密码修改成功",Toast.LENGTH_SHORT).show();
+*/
 /*
                                 Intent intent = new Intent();
                                 intent.setClass(SettingsActivity.this, );
                                 startActivity(intent);
-*/
+*//*
+
                             } catch (Exception e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
@@ -162,3 +169,4 @@ public class SettingsActivity extends Activity {
 
 
 }
+*/

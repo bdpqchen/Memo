@@ -19,7 +19,11 @@ package="com.example.chen.memo">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity
+
+    <activity android:name=".view.main.MainActivity"/>
+    <activity android:name=".view.diary.DiaryActivity"/>
+    <activity android:name=".view.diary.DiaryListActivity"/>
+   <!-- <activity
         android:name=".MainActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity android:name=".DiaryActivity"
@@ -39,7 +43,7 @@ package="com.example.chen.memo">
     <activity android:name=".ViewCipherActivity"/>
     <activity android:name=".CipherDetailActivity"/>
     <activity android:name=".MusicActivity"/>
-    <receiver android:name="com.example.chen.memo.MyReceiver" />
+    <receiver android:name="com.example.chen.memo.MyReceiver" />-->
 </application>
 
 <uses-permission android:name="android.permission.VIBRATE"/>

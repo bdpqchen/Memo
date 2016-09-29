@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.content.BroadcastReceiver;
@@ -6,9 +7,11 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.widget.Toast;
 
+*/
 /**
  * Created by DCchen on 2016/4/20.
- */
+ *//*
+
 public class MyReceiver extends BroadcastReceiver {
 
     private Vibrator vibrator;
@@ -29,3 +32,4 @@ public class MyReceiver extends BroadcastReceiver {
 
     }
 }
+*/

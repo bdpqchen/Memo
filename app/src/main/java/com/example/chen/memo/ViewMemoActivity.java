@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -19,6 +20,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chen.memo.application.CustomApplication;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,15 +29,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+*/
 /**
  * Created by DCchen on 2016/4/18.
- */
+ *//*
+
 public class ViewMemoActivity extends Activity {
 
     private MyApplication app ;
     private ListView listView;
     private Button addMemo;
-    private SqlHelper dbHelper = new SqlHelper(ViewMemoActivity.this, "diary_db", null, app.dbversion);
+    private SqlHelper dbHelper = new SqlHelper(ViewMemoActivity.this, "diary_db", null, CustomApplication.getDbversion());
     private String table = "memo";
     private TextView back;
 
@@ -50,8 +55,10 @@ public class ViewMemoActivity extends Activity {
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, getData(), R.layout.view_memo_activity,
               new String[]{"publish_time", "content", "_id"}, new int[]{R.id.time, R.id.text, R.id.textHidden});
         listView.setAdapter(simpleAdapter);
-        /**点击查看全文
-         * */
+        */
+/**点击查看全文
+         * *//*
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,9 +86,11 @@ public class ViewMemoActivity extends Activity {
             }
         });
 
-        /**
+        */
+/**
          * 长按提示删除
-         * */
+         * *//*
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -179,3 +188,4 @@ public class ViewMemoActivity extends Activity {
 }
 
 
+*/

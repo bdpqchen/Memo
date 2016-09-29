@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -19,12 +20,15 @@ import com.example.chen.memo.MyApplication;
 import com.example.chen.memo.R;
 import com.example.chen.memo.SimpleCrypto;
 import com.example.chen.memo.SqlHelper;
+import com.example.chen.memo.application.CustomApplication;
 
 import java.util.Date;
 
+*/
 /**
  * Created by dcchen on 16-6-6.
- */
+ *//*
+
 public class CipherDetailActivity extends Activity {
 
     private MyApplication app;
@@ -80,7 +84,7 @@ public class CipherDetailActivity extends Activity {
                     encryptingCode = SimpleCrypto.enCrypto(originalText,seed);
                     //Log.i("原加密结果为 ", encryptingCode);
                     if (!account.equals("") || !pwd_tittle.equals("") || !originalText.equals("")) {
-                        SqlHelper dbHelper = new SqlHelper(CipherDetailActivity.this, "diary_db", null, app.dbversion);
+                        SqlHelper dbHelper = new SqlHelper(CipherDetailActivity.this, "diary_db", null, CustomApplication.getDbversion());
                         final SQLiteDatabase db = dbHelper.getWritableDatabase();
                         Cursor c = db.query(true, "cipher", new String[]{"name", "account", "validity"}, "name=? and account=? and validity>?", new String[]{pwd_tittle, account, "0"}, null, null, null, null);
                         if (c.getCount() != 0) {
@@ -164,3 +168,4 @@ public class CipherDetailActivity extends Activity {
 
 
 }
+*/

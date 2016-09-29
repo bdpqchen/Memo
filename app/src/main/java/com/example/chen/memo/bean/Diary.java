@@ -8,12 +8,12 @@ import java.util.Date;
  * Created by cdc on 16-9-24.
  */
 
-public class DiaryBean extends DataSupport{
+public class Diary extends DataSupport{
 
     private int id;
     private String diary;
-    private int validity;
-    private Date time;
+    private int status;
+    private int publishTime;
 
 
     public int getId() {
@@ -32,19 +32,19 @@ public class DiaryBean extends DataSupport{
         this.diary = diary;
     }
 
-    public int getValidity() {
-        return validity;
+    public int getPublishTime() {
+        return publishTime;
     }
 
-    public void setValidity(int validity) {
-        this.validity = validity;
+    public void setPublishTime(int publishTime) {
+        this.publishTime = publishTime;
     }
 
-    public Date getTime() {
-        return time;
+    public int getStatus() {
+        return status;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

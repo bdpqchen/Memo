@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.chen.memo.MainActivity;
 import com.example.chen.memo.utils.LogUtils;
+import com.example.chen.memo.view.main.MainActivity;
 
 /**
  * Created by cdc on 16-9-21.
@@ -23,7 +23,7 @@ public class SplashActivity extends Activity {
                 startActivity(intent);
                 finish();
             }
-        }, 2000);
+        }, 200);
 
     }
 

@@ -34,14 +34,14 @@ public class LogUtils {
         }
     }
 
-    public static void d(String message) {
+   /* public static void d(String message, int size) {
         if (LEVEL <= DEBUG) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             String tag = getDefaultTag(stackTraceElement);
             Log.d(tag, getLogInfo(stackTraceElement) + message);
         }
     }
-
+*/
     public static void d(String tag, String message) {
         if (LEVEL <= DEBUG) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
@@ -52,7 +52,7 @@ public class LogUtils {
         }
     }
 
-    public static void i(String message) {
+    public static void i(String message, int size) {
         if (LEVEL <= INFO) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             String tag = getDefaultTag(stackTraceElement);
@@ -113,7 +113,12 @@ public class LogUtils {
     /**
      * 输出日志所包含的信息
      */
-    public static String getLogInfo(StackTraceElement stackTraceElement) {
+
+    public static String getLogInfo(StackTraceElement stackTraceElement){
+        return "";
+    }
+
+    public static String getLogInfoBackup(StackTraceElement stackTraceElement) {
         StringBuilder logInfoStringBuilder = new StringBuilder();
         // 获取线程名
         String threadName = Thread.currentThread().getName();

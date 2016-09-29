@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -6,9 +7,11 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+*/
 /**
  * Created by chen on 16-7-25.
- */
+ *//*
+
 public class MemoDetailActivity extends Activity {
     private MyApplication app;
     private TextView textView,timeView;
@@ -29,4 +32,4 @@ public class MemoDetailActivity extends Activity {
         }
 
     }
-}
+}*/

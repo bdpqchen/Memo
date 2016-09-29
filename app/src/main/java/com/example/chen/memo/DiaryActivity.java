@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.content.ContentValues;
@@ -15,9 +16,11 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+*/
 /**
  * Created by DCchen on 2016/4/10.
- */
+ *//*
+
 public class DiaryActivity extends MainActivity {
 
     private MyApplication app;
@@ -96,3 +99,4 @@ public class DiaryActivity extends MainActivity {
     }
 }
 
+*/

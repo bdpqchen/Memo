@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -12,9 +13,11 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+*/
 /**
  * Created by DCchen on 2016/4/18.
- */
+ *//*
+
 public class NewActActivity extends Activity {
 
 
@@ -74,7 +77,9 @@ public class NewActActivity extends Activity {
         new DatePickerDialog(NewActActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-		        /*月份从0计数*/
+		        */
+/*月份从0计数*//*
+
                 String theDate = String.format("%d-%d-%d",year,monthOfYear+1,dayOfMonth);
                 System.out.println(theDate);
 
@@ -95,3 +100,4 @@ public class NewActActivity extends Activity {
 
 
 }
+*/

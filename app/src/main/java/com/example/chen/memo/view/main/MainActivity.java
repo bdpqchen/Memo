@@ -2,7 +2,6 @@ package com.example.chen.memo.view.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,30 +11,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.chen.memo.R;
-import com.example.chen.memo.SettingsActivity;
-import com.example.chen.memo.SimpleCrypto;
-import com.example.chen.memo.ViewCipherActivity;
-import com.example.chen.memo.ViewDiaryActivity;
-import com.example.chen.memo.ViewMemoActivity;
 import com.example.chen.memo.application.CustomApplication;
-import com.example.chen.memo.presenter.ValidatePresenter;
+import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.BaseActivity;
 import com.example.chen.memo.view.common.NextActivity;
+import com.example.chen.memo.view.diary.DiaryListActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-/**
+/*
  * Created by cdc on 16-9-23.
- */
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, MainAcitvityImpl {
+*/
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -51,6 +44,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+
+        WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+        localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
 
         //将Activity加入activity管理类
         CustomApplication.addActivity(this);
@@ -70,27 +66,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        ValidatePresenter validatePresenter = new ValidatePresenter();
+        ValidatePresenterImpl validatePresenterImpl = new ValidatePresenterImpl();
         if (id == R.id.diary) {
             if (PrefUtils.isDiaryLock()) {
-                validatePresenter.login(this, NextActivity.DiaryList);
+                validatePresenterImpl.login(this, NextActivity.DiaryList);
             } else {
-                startActivity(ViewDiaryActivity.class);
+                startActivity(DiaryListActivity.class);
             }
         } else if (id == R.id.memo) {
             if (PrefUtils.isMemoLock()) {
-                validatePresenter.login(this, NextActivity.MemoList);
+                validatePresenterImpl.login(this, NextActivity.MemoList);
             } else {
-                startActivity(ViewMemoActivity.class);
+                //startActivity(ViewMemoActivity.class);
             }
         } else if (id == R.id.cipher) {
             if (PrefUtils.isCipherLock()) {
-                validatePresenter.login(this, NextActivity.CipherList);
+                validatePresenterImpl.login(this, NextActivity.CipherList);
             } else {
-                startActivity(ViewCipherActivity.class);
+                //startActivity(ViewCipherActivity.class);
             }
         } else if (id == R.id.settings) {
-            validatePresenter.setup(this,NextActivity.Settings);
+            validatePresenterImpl.setup(this,NextActivity.Settings);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

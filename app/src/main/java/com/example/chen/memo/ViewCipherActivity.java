@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -21,6 +22,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chen.memo.application.CustomApplication;
+
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
@@ -29,16 +32,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+*/
 /**
  * Created by dcchen on 16-6-4.
- */
+ *//*
+
 public class ViewCipherActivity extends Activity{
 
     private MyApplication app;
     private ListView listView;
     private Button addCipher;
     private static boolean isExit = false;
-    private SqlHelper dbHelper = new SqlHelper(ViewCipherActivity.this, "diary_db", null, app.dbversion);
+    private SqlHelper dbHelper = new SqlHelper(ViewCipherActivity.this, "diary_db", null, CustomApplication.getDbversion());
     private String table = "cipher";
     private TextView back;
 
@@ -73,9 +78,11 @@ public class ViewCipherActivity extends Activity{
             }
         });
 
-        /**
+        */
+/**
          * 长按提示删除
-         * */
+         * *//*
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -170,3 +177,4 @@ public class ViewCipherActivity extends Activity{
     }
 
 }
+*/

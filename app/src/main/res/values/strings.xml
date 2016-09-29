@@ -25,4 +25,11 @@
     <string name="key_password">bdpq_unique_pwd</string>
     <string name="error_pwd_text">密码输入错误</string>
     <string name="first_enter">首次进入,请设置唯一密码</string>
+    <string name="set_pwd_succeed">设置成功,请牢记密码</string>
+    <string name="not_same_pwd">两次密码输入不一致，请重新输入</string>
+    <string name="diary_list">日记列表</string>
+    <string name="create_diary">写日记</string>
+    <string name="not_finish_diary">日记还没有写完哦~</string>
+    <string name="save_data_succeed">保存成功</string>
+    <string name="save_data_fail" >保存失败</string>
 </resources>

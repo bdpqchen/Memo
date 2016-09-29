@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -14,11 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chen.memo.application.CustomApplication;
+
 import org.w3c.dom.Text;
 
+*/
 /**
  * Created by DCchen on 2016/4/16.
- */
+ *//*
+
 public class DetailActivity extends Activity {
     private MyApplication app;
     private EditText textView;
@@ -46,9 +51,11 @@ public class DetailActivity extends Activity {
         Editable etext = textView.getText();
         Selection.setSelection(etext, etext.length());
         //intent.setClass(DetailActivity.this, ViewDiaryActivity.class);
-        /**
+        */
+/**
         * 修改日记操作，同删除类似
-        * */
+        * *//*
+
         FloatingActionButton alter = (FloatingActionButton) findViewById(R.id.alter);
         alter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +63,7 @@ public class DetailActivity extends Activity {
                 //获取当前edittext内容，即要修改的内容
                 String diaryA = String.valueOf(textView.getText());
                 Integer pidLong = Integer.parseInt(pid);
-                SqlHelper dbHelper = new SqlHelper(DetailActivity.this, "diary_db", null, app.dbversion);
+                SqlHelper dbHelper = new SqlHelper(DetailActivity.this, "diary_db", null, CustomApplication.getDbversion());
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 values.put(content, diaryA);
@@ -85,4 +92,4 @@ public class DetailActivity extends Activity {
 
 
 
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -19,9 +20,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+*/
 /**
  * Created by DCchen on 2016/4/20.
- */
+ *//*
+
 
 
 public class MusicActivity extends Activity {
@@ -76,3 +79,4 @@ public class MusicActivity extends Activity {
                 RingtoneManager.TYPE_ALARM);
     }
 }
+*/

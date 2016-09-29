@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -249,3 +250,4 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
     }
 }
+*/

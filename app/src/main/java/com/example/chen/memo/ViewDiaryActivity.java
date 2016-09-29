@@ -1,3 +1,4 @@
+/*
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -16,6 +17,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chen.memo.application.CustomApplication;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,16 +26,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
+*/
 /**
  * Created by DCchen on 2016/4/12.
- */
+ *//*
+
 public class ViewDiaryActivity extends Activity {
 
     private MyApplication app;
     private ListView listView;
     private Button add;
     private TextView back;
-    private SqlHelper dbHelper = new SqlHelper(ViewDiaryActivity.this, "diary_db", null, app.dbversion);
+    private SqlHelper dbHelper = new SqlHelper(ViewDiaryActivity.this, "diary_db", null, CustomApplication.getDbversion());
     private String table = "diary";
     @Override
     public void onCreate(Bundle savedInstanceStart) {
@@ -46,7 +51,9 @@ public class ViewDiaryActivity extends Activity {
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, getData(), R.layout.view_diary_activity, new String[]{"time", "text", "_id"}, new int[]{R.id.time, R.id.text, R.id.textHidden});
         listView.setAdapter(simpleAdapter);
 
-        /**点击查看日记全文*/
+        */
+/**点击查看日记全文*//*
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,9 +70,11 @@ public class ViewDiaryActivity extends Activity {
                 startActivity(intent);
             }
         });
-        /**
+        */
+/**
          * 长按提示删除日记
-         * */
+         * *//*
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -151,3 +160,4 @@ public class ViewDiaryActivity extends Activity {
     }
 
 }
+*/

@@ -1,3 +1,5 @@
+/*
+
 package com.example.chen.memo;
 
 import android.app.Activity;
@@ -28,6 +30,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.chen.memo.application.CustomApplication;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,9 +41,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.TimeZone;
 
-/**
- * Created by DCchen on 2016/4/18.
- */
+
+
 public class MemoActivity extends Activity {
 
     private MyApplication app;
@@ -55,7 +58,7 @@ public class MemoActivity extends Activity {
     private TextView title ,title_back;
     private String table = "memo";
     private int pid = 0;
-    private SqlHelper dbHelper = new SqlHelper(MemoActivity.this, "diary_db", null, app.dbversion);
+    private SqlHelper dbHelper = new SqlHelper(MemoActivity.this, "diary_db", null, CustomApplication.getDbversion());
     private int intDateMore;
 
 
@@ -180,7 +183,7 @@ public class MemoActivity extends Activity {
     //清除闹钟标识
     public void clearAlarmTime(int intDate){
         String strSQL = "UPDATE " + table + " SET time=0 WHERE time=" + intDate;
-        SQLiteOpenHelper dbHelper = new SqlHelper(MemoActivity.this, "diary_db", null, app.dbversion);
+        SQLiteOpenHelper dbHelper = new SqlHelper(MemoActivity.this, "diary_db", null, CustomApplication.getDbversion());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.execSQL(strSQL);
         db.close();
@@ -247,7 +250,7 @@ public class MemoActivity extends Activity {
                         //判断是创建一条新记录还是修改原记录
                         if(pid == 0) {
                             //若未找到隐藏的唯一标识则认为未定义闹钟提醒，有备忘数据
-                            SqlHelper dbHelper = new SqlHelper(MemoActivity.this, "diary_db", null, app.dbversion);
+                            SqlHelper dbHelper = new SqlHelper(MemoActivity.this, "diary_db", null, CustomApplication.getDbversion());
                             ContentValues cv = new ContentValues();
                             cv.put("content", value);
                             cv.put("validity", 1);
@@ -331,7 +334,7 @@ public class MemoActivity extends Activity {
                 startActivity();
             } else {
                 //获取到隐藏的时间数据，则删除数据库的记录 、 取消闹钟
-                SqlHelper dbHelper = new SqlHelper(MemoActivity.this , "diary_db" , null, app.dbversion);
+                SqlHelper dbHelper = new SqlHelper(MemoActivity.this , "diary_db" , null,CustomApplication.getDbversion());
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 values.put("validity", 0);
@@ -360,14 +363,4 @@ public class MemoActivity extends Activity {
     }
 
 }
-
-/*待解决问题
-
-* 显示闹钟时间
-* 修改闹钟
-* 是否独立memo_detail_activity
-*
-* 代码优化
-* ui变化
-*
-* */
+*/
