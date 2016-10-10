@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ProgressBar
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleLargeInverse"
         android:layout_gravity="center_horizontal|center_vertical"
-
+        android:textSize="20sp"
+        android:id="@+id/no_more_data"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
         />
 
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical" />
 </LinearLayout>

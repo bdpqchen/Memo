@@ -3,6 +3,7 @@ package com.example.chen.memo.view.diary;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -43,21 +44,23 @@ public class DiaryActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diary_activity);
         ButterKnife.inject(this);
-        EventBus.getDefault().register(this);
-
-
         toolbar.setTitle(R.string.create_diary);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         fabSave.setOnClickListener(this);
-
         diaryPresenterImpl = new DiaryPresenterImpl(this);
-
-
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onClick(View v) {
@@ -69,14 +72,8 @@ public class DiaryActivity extends BaseActivity implements View.OnClickListener 
                 break;
         }
 
-
     }
 
-    @Subscribe
-    public void onEventMainThread(DiaryEvent event){
-        String msg = event.getMsg();
-        //onToastMessage(msg);
-    }
 
     public void onToastMessage(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();

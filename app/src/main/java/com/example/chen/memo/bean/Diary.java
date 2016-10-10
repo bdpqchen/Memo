@@ -13,7 +13,7 @@ public class Diary extends DataSupport{
     private int id;
     private String diary;
     private int status;
-    private int publishTime;
+    private long publishTime;
 
 
     public int getId() {
@@ -32,11 +32,11 @@ public class Diary extends DataSupport{
         this.diary = diary;
     }
 
-    public int getPublishTime() {
+    public long getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(int publishTime) {
+    public void setPublishTime(long publishTime) {
         this.publishTime = publishTime;
     }
 

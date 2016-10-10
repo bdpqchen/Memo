@@ -51,14 +51,14 @@ public class LogUtils {
             Log.d(tag, getLogInfo(stackTraceElement) + message);
         }
     }
-
+/*
     public static void i(String message, int size) {
         if (LEVEL <= INFO) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             String tag = getDefaultTag(stackTraceElement);
             Log.i(tag, getLogInfo(stackTraceElement) + message);
         }
-    }
+    }*/
 
     public static void i(String tag, String message) {
         if (LEVEL <= INFO) {

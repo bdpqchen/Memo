@@ -11,4 +11,11 @@
     <color name="color_background_black">#1b1818</color>
     <color name="color_font_white">#ffffff</color>
     <color name="color_white_item">#fefeee</color>
+    <color name="red_pressed">#FF6666</color>
+    <color name="red_normal">#FF0000</color>
+    <color name="purple_normal">#9932CC</color>
+    <color name="purple_pressed">#9F79EE</color>
+    <color name="green_normal">#37C000</color>
+    <color name="green_pressed">#30A070</color>
+
 </resources>
