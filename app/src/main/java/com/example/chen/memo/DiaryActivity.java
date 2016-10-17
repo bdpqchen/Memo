@@ -30,7 +30,7 @@ public class DiaryActivity extends MainActivity {
     @Override
     public void onCreate(Bundle savedInstanceStart) {
         super.onCreate(savedInstanceStart);
-        setContentView(R.layout.diary_activity);
+        setContentView(R.layout.activity_diary);
         app.addActivity(this);
         TextView title = (TextView) findViewById(R.id.title_user);
         title.setText(this.getString(R.string.write_diary));

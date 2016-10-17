@@ -8,6 +8,7 @@ import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.model.ViewListModelImpl;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.memo.MemoListActivity;
 import com.yanzhenjie.recyclerview.swipe.OnSwipeMenuItemClickListener;
 
 /**
@@ -25,7 +26,7 @@ public class ViewListPresenterImpl implements IViewListPresenter {
                 viewListModel.initDiaryData((DiaryListActivity) context);
                 break;
             case CustomApplication.MEMO:
-                viewListModel.initMemoData();
+                viewListModel.initMemoData((MemoListActivity) context);
                 break;
             case CustomApplication.CIPHER:
                 viewListModel.initCipherData();

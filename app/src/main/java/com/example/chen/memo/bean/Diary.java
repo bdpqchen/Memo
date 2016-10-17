@@ -15,7 +15,6 @@ public class Diary extends DataSupport{
     private int status;
     private long publishTime;
 
-
     public int getId() {
         return id;
     }

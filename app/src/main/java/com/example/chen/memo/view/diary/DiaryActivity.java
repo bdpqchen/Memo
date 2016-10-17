@@ -10,15 +10,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.chen.memo.R;
-import com.example.chen.memo.event.DiaryEvent;
 import com.example.chen.memo.presenter.DiaryPresenterImpl;
 import com.example.chen.memo.view.BaseActivity;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+import static com.example.chen.memo.application.CustomApplication.EDIT_TEXT_DIARY;
 
 /**
  * Created by cdc on 16-9-27.
@@ -37,19 +36,16 @@ public class DiaryActivity extends BaseActivity implements View.OnClickListener 
 
     private Bundle bundle = new Bundle();
     private DiaryPresenterImpl diaryPresenterImpl;
-    public static String EDIT_TEXT_DIARY = "exit_text_diary";
-    public static String NOW_TIME = "now_time";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.diary_activity);
+        setContentView(R.layout.activity_diary);
         ButterKnife.inject(this);
-        toolbar.setTitle(R.string.create_diary);
+        toolbar.setTitle(R.string.toolbar_title_create_diary);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fabSave.setOnClickListener(this);
         diaryPresenterImpl = new DiaryPresenterImpl(this);
-
     }
 
     @Override
@@ -71,9 +67,7 @@ public class DiaryActivity extends BaseActivity implements View.OnClickListener 
                 diaryPresenterImpl.createDiary(bundle);
                 break;
         }
-
     }
-
 
     public void onToastMessage(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();

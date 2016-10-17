@@ -119,6 +119,7 @@ public class MemoActivity extends Activity {
                 }
             }
         });
+
         //完成按钮监听
         FloatingActionButton finish = (FloatingActionButton) findViewById(R.id.finish);
         finish.setOnClickListener(new View.OnClickListener() {

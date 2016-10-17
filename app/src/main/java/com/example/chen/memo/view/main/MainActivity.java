@@ -21,6 +21,7 @@ import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.BaseActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.memo.MemoListActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -57,13 +58,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerToggle.syncState();
         navView.setNavigationItemSelectedListener(this);
 
-
     }
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         ValidatePresenterImpl validatePresenterImpl = new ValidatePresenterImpl();
@@ -77,7 +76,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             if (PrefUtils.isMemoLock()) {
                 validatePresenterImpl.login(this, NextActivity.MemoList);
             } else {
-                //startActivity(ViewMemoActivity.class);
+                startActivity(MemoListActivity.class);
             }
         } else if (id == R.id.cipher) {
             if (PrefUtils.isCipherLock()) {

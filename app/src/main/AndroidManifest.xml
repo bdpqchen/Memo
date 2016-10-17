@@ -23,27 +23,34 @@ package="com.example.chen.memo">
     <activity android:name=".view.main.MainActivity"/>
     <activity android:name=".view.diary.DiaryActivity"/>
     <activity android:name=".view.diary.DiaryListActivity"/>
-   <!-- <activity
-        android:name=".MainActivity"
-        android:theme="@style/AppTheme.NoActionBar"/>
-    <activity android:name=".DiaryActivity"
-        android:windowSoftInputMode="adjustResize" />
-    <activity android:name=".ViewDiaryActivity"/>
-    <activity
-        android:name=".DetailActivity"
-        android:windowSoftInputMode="adjustResize" />
-    <activity android:name=".MemoActivity">
-        <receiver
-            android:name=".OneShotAlarm"
-            android:process=":remote" />
-    </activity>
-    <activity android:name=".ViewMemoActivity"/>
-    <activity android:name=".NewActActivity"/>
-    <activity android:name=".SettingsActivity"/>
-    <activity android:name=".ViewCipherActivity"/>
-    <activity android:name=".CipherDetailActivity"/>
-    <activity android:name=".MusicActivity"/>
-    <receiver android:name="com.example.chen.memo.MyReceiver" />-->
+    <activity android:name=".view.diary.DiaryDetailActivity"/>
+    <activity android:name=".view.memo.MemoActivity"/>
+    <activity android:name=".view.memo.MemoDetailActivity"/>
+    <activity android:name=".view.memo.MemoListActivity"/>
+    <activity android:name=".view.memo.AlarmActivity"/>
+    <receiver android:name="com.example.chen.memo.service.AlarmReceiver" />
+
+    <!-- <activity
+         android:name=".MainActivity"
+         android:theme="@style/AppTheme.NoActionBar"/>
+     <activity android:name=".DiaryActivity"
+         android:windowSoftInputMode="adjustResize" />
+     <activity android:name=".ViewDiaryActivity"/>
+     <activity
+         android:name=".DetailActivity"
+         android:windowSoftInputMode="adjustResize" />
+     <activity android:name=".MemoActivity">
+         <receiver
+             android:name=".OneShotAlarm"
+             android:process=":remote" />
+     </activity>
+     <activity android:name=".ViewMemoActivity"/>
+     <activity android:name=".NewActActivity"/>
+     <activity android:name=".SettingsActivity"/>
+     <activity android:name=".ViewCipherActivity"/>
+     <activity android:name=".CipherDetailActivity"/>
+     <activity android:name=".MusicActivity"/>
+     <receiver android:name="com.example.chen.memo.MyReceiver" />-->
 </application>
 
 <uses-permission android:name="android.permission.VIBRATE"/>

@@ -19,10 +19,6 @@ import com.example.chen.memo.application.CustomApplication;
 
 import org.w3c.dom.Text;
 
-*/
-/**
- * Created by DCchen on 2016/4/16.
- *//*
 
 public class DetailActivity extends Activity {
     private MyApplication app;
@@ -51,10 +47,9 @@ public class DetailActivity extends Activity {
         Editable etext = textView.getText();
         Selection.setSelection(etext, etext.length());
         //intent.setClass(DetailActivity.this, ViewDiaryActivity.class);
-        */
-/**
+*
         * 修改日记操作，同删除类似
-        * *//*
+        *
 
         FloatingActionButton alter = (FloatingActionButton) findViewById(R.id.alter);
         alter.setOnClickListener(new View.OnClickListener() {
@@ -92,4 +87,5 @@ public class DetailActivity extends Activity {
 
 
 
-}*/
+}
+*/

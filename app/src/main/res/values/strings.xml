@@ -20,17 +20,33 @@
     <string name="btn_positive">确定</string>
     <string name="hint_input_again">再输入一次</string>
     <string name="hint_input_first">字母或数字的组合</string>
-    <string name="alarm_title">闹铃提醒:</string>
+    <string name="alarm_title">备忘提醒</string>
     <string name="alarm_btn_ok">知道了</string>
     <string name="key_password">bdpq_unique_pwd</string>
     <string name="error_pwd_text">密码输入错误</string>
     <string name="first_enter">首次进入,请设置唯一密码</string>
     <string name="set_pwd_succeed">设置成功,请牢记密码</string>
     <string name="not_same_pwd">两次密码输入不一致，请重新输入</string>
-    <string name="diary_list">日记列表</string>
-    <string name="create_diary">写日记</string>
+
+    <string name="toolbar_title_diary_list">日记列表</string>
+    <string name="toolbar_title_view_diary">查看日记</string>
+    <string name="toolbar_title_create_diary">写日记</string>
+
     <string name="not_finish_diary">日记还没有写完哦~</string>
     <string name="save_data_succeed">保存成功</string>
     <string name="save_data_fail" >保存失败</string>
     <string name="no_more_data">没有更多了......</string>
+    <string name="enter_write_mode">双击进入修改模式</string>
+    <string name="dialog_title_alter_tips">更改提示</string>
+    <string name="alter_diary_message">要保存所做的更改吗？</string>
+    <string name="dialog_title_delete_tips">删除提示</string>
+    <string name="delete_diary_message">删除后将不可恢复，确定永久删除该日记吗？</string>
+    <string name="already_delete_diary">成功删除该日记</string>
+    <string name="toolbar_title_memo_list">备忘列表</string>
+    <string name="add_alarm">闹钟提醒</string>
+    <string name="set_datetime_error">时间设定错误</string>
+    <string name="finish">完成</string>
+    <string name="not_finish_memo">备忘内容还没有写哦～～</string>
+    <string name="toolbar_title_create_memo">备忘录</string>
+    <string name="alter_success">修改成功</string>
 </resources>

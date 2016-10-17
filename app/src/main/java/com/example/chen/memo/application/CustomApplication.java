@@ -30,6 +30,32 @@ public class CustomApplication extends LitePalApplication {
     public static final int RECORD_STATUS_TRASHED = 1;
     public static final int RECORD_STATUS_VALID   = 9;
 
+    /*
+    * Intent Bundle 字符标识
+    *
+    * */
+    public static final String EDIT_TEXT_DIARY = "edit_text_diary";
+    public static final String EDIT_TEXT_MEMO = "edit_text_memo";
+    public static final String NOW_TIME = "now_time";
+    public static final String ID = "id";
+    public static final String DIARY_CONTENT = "diary_content";
+    public static final String MEMO_CONTENT = "memo_content";
+    public static final String MEMO_ALARM_TIME = "memo_alarm_time";
+    public static final String ALARM_TIME_OLD = "alarm_time_old";
+
+    public static final String PUBLISH_TIME = "publish_time";
+    public static final String POSITION = "position";
+    public static final String STATUS = "status";
+    public static final String MSG = "msg";
+
+    public static final int ALTER = 0;
+    public static final int CREATE = 1;
+
+
+    //datalist 条数
+    public static final int RECORD_LIST_LIMIT = 20;
+
+
     @Override
     public void onCreate(){
         context = getApplicationContext();

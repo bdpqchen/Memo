@@ -22,39 +22,39 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.chen.memo.R;
-import com.example.chen.memo.bean.Diary;
-import com.example.chen.memo.presenter.DiaryPresenterImpl;
+import com.example.chen.memo.bean.Memo;
+import com.example.chen.memo.presenter.MemoPresenterImpl;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.TimeStampUtils;
-import com.example.chen.memo.view.diary.DiaryDetailActivity;
-import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.memo.MemoActivity;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuAdapter;
 
+import java.util.Date;
 import java.util.List;
 
-import static com.example.chen.memo.application.CustomApplication.DIARY_CONTENT;
 import static com.example.chen.memo.application.CustomApplication.ID;
+import static com.example.chen.memo.application.CustomApplication.MEMO_ALARM_TIME;
+import static com.example.chen.memo.application.CustomApplication.MEMO_CONTENT;
 import static com.example.chen.memo.application.CustomApplication.POSITION;
 import static com.example.chen.memo.application.CustomApplication.PUBLISH_TIME;
-import static com.example.chen.memo.application.CustomApplication.RECORD_LIST_LIMIT;
 
 /**
  * Created by YOLANDA on 2016/7/22.
  */
-public class DiaryMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
+public class MemoMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
 
-    private List<Diary> datalist;
+    private List<Memo> datalist;
     private final int TYPE_WITHOUT = 2;
     private final int TYPE_NORMAL = 1;
     private final int TYPE_FOOTER = 0;
     private Context context;
-    private DiaryPresenterImpl diaryPresenterImpl;
-//    private OnItemClickListener mOnItemClickListener;
+    private MemoPresenterImpl memoPresenterImpl;
 
-    public DiaryMenuAdapter(Context context, List<Diary> datalist) {
+    public MemoMenuAdapter(Context context, List<Memo> datalist) {
         this.datalist = datalist;
         this.context = context;
     }
@@ -64,18 +64,29 @@ public class DiaryMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> 
         if (holder instanceof NormalViewHolder) {
             NormalViewHolder viewHolder = (NormalViewHolder) holder;
             final String publishTime = TimeStampUtils.getDatetimeString(datalist.get(position).getPublishTime());
-            final String diary = datalist.get(position).getDiary();
+            final String memo = datalist.get(position).getMemo();
             final int id = datalist.get(position).getId();
-            viewHolder.tvPartContent.setText(diary);
+            viewHolder.tvPartContent.setText(memo);
             viewHolder.tvPublishTime.setText(publishTime);
+            int alarmTimeStamp = datalist.get(position).getAlarmTime();
+            if(alarmTimeStamp > 0 ){
+                int nowTimeStamp = Integer.parseInt(((new Date().getTime() + "").substring(0, 9)));
+                if(alarmTimeStamp > nowTimeStamp){
+                    viewHolder.imageAlarm.setImageResource(R.drawable.ic_alarm_black_24dp);
+                }
+                viewHolder.imageAlarm.setVisibility(View.VISIBLE);
+            }else{
+                viewHolder.imageAlarm.setVisibility(View.GONE);
+            }
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, DiaryDetailActivity.class);
+                    Intent intent = new Intent(context, MemoActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putInt(ID, id);
-                    bundle.putString(DIARY_CONTENT, diary);
-                    bundle.putString(PUBLISH_TIME, publishTime);
+                    bundle.putString(MEMO_CONTENT, memo);
+                    bundle.putLong(PUBLISH_TIME, datalist.get(position).getPublishTime());
+                    bundle.putInt(MEMO_ALARM_TIME, datalist.get(position).getAlarmTime());
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
@@ -85,11 +96,11 @@ public class DiaryMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> 
                 @Override
                 public boolean onLongClick(View v) {
 
-                    diaryPresenterImpl = new DiaryPresenterImpl();
+                    memoPresenterImpl = new MemoPresenterImpl();
                     Bundle bundle = new Bundle();
                     bundle.putInt(ID, datalist.get(position).getId());
                     bundle.putInt(POSITION, position);
-                    diaryPresenterImpl.deleteDiary((DiaryListActivity) context, bundle);
+                    //memoPresenterImpl.deleteMemo((MemoListActivity) context, bundle);
                     LogUtils.v("longClick");
                     return true;
                 }
@@ -100,7 +111,7 @@ public class DiaryMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> 
     @Override
     public View onCreateContentView(ViewGroup parent, int viewType) {
         if (viewType == TYPE_NORMAL) {
-            return LayoutInflater.from(context).inflate(R.layout.item_diary_normal, parent, false);
+            return LayoutInflater.from(context).inflate(R.layout.item_memo_normal, parent, false);
         } else if (viewType == TYPE_FOOTER) {
             return LayoutInflater.from(context).inflate(R.layout.item_footer, parent, false);
         } else if (viewType == TYPE_WITHOUT) {
@@ -139,13 +150,15 @@ public class DiaryMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> 
     }
 
 
-    class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvPartContent, tvPublishTime;
-        public NormalViewHolder(View inflate) {
+        ImageView imageAlarm;
+        NormalViewHolder(View inflate) {
             super(inflate);
             inflate.setOnClickListener(this);
             tvPartContent = (TextView) inflate.findViewById(R.id.tv_part_content);
             tvPublishTime = (TextView) inflate.findViewById(R.id.tv_publish_time);
+            imageAlarm = (ImageView) inflate.findViewById(R.id.image_alarm);
         }
         @Override
         public void onClick(View v) {
