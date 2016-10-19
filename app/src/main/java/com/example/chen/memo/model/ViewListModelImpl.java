@@ -6,8 +6,10 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.chen.memo.application.CustomApplication;
+import com.example.chen.memo.bean.CipherBean;
 import com.example.chen.memo.bean.Diary;
 import com.example.chen.memo.bean.Memo;
+import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
@@ -17,6 +19,7 @@ import org.litepal.crud.DataSupport;
 import java.util.List;
 
 import static com.example.chen.memo.application.CustomApplication.RECORD_LIST_LIMIT;
+import static com.example.chen.memo.application.CustomApplication.STATUS;
 
 /**
  * Created by cdc on 16-9-24.
@@ -43,28 +46,74 @@ public class ViewListModelImpl implements IViewListModel {
     }
 
     @Override
-    public void initCipherData() {
+    public void initCipherData(CipherListActivity view) {
+        List<CipherBean> cipherList = DataSupport.where(STATUS_WHERE, VALID_DATA).limit(RECORD_LIST_LIMIT).order(ORDERBY_ID_DESC).find(CipherBean.class);
+        view.onInitSuccess(cipherList);
     }
 
+    @Override
     public void loadMoreDiaryData(DiaryListActivity view, int offset) {
         List<Diary> diaryListMore = DataSupport.where(STATUS_WHERE, VALID_DATA).limit(RECORD_LIST_LIMIT).offset(RECORD_LIST_LIMIT * offset).order(ORDERBY_ID_DESC).find(Diary.class);
         view.onInitSuccess(diaryListMore);
     }
 
+    @Override
+    public void loadMoreMemoData(MemoListActivity view, int offset) {
+        List<Memo> memoListMore = DataSupport.where(STATUS_WHERE, VALID_DATA).limit(RECORD_LIST_LIMIT).offset(RECORD_LIST_LIMIT * offset)
+                .order(ORDERBY_ID_DESC).find(Memo.class);
+        view.onInitSuccess(memoListMore);
+    }
+
+    @Override
+    public void loadMoreCipherData(CipherListActivity view, int offset) {
+        List<CipherBean> cipherListMore = DataSupport.where(STATUS_WHERE, VALID_DATA).limit(RECORD_LIST_LIMIT).offset(RECORD_LIST_LIMIT * offset)
+                .order(ORDERBY_ID_DESC).find(CipherBean.class);
+        view.onInitSuccess(cipherListMore);
+    }
+
+    @Override
     public void getDiaryDataCount(DiaryListActivity view) {
         int count = DataSupport.where(STATUS_WHERE, VALID_DATA).count(Diary.class);
         view.onGetDataCount(count);
     }
 
+    @Override
+    public void getMemoDataCount(MemoListActivity view) {
+        int count = DataSupport.where(STATUS_WHERE, VALID_DATA).count(Memo.class);
+        view.onGetDataCount(count);
+    }
+
+    @Override
+    public void getCipherDataCount(CipherListActivity view) {
+        int count = DataSupport.where(STATUS_WHERE, VALID_DATA).count(CipherBean.class);
+        view.onGetDataCount(count);
+    }
+
+    @Override
     public void discardRecord(Context context, NextActivity viewType, int id){
         switch (viewType){
             case DiaryList:
-                ContentValues values = new ContentValues();
-                values.put("status",CustomApplication.RECORD_STATUS_TRASHED);
-                DataSupport.update(Diary.class,values,id);
+                ContentValues valuesDiary = new ContentValues();
+                valuesDiary.put(STATUS, CustomApplication.RECORD_STATUS_TRASHED);
+                DataSupport.update(Diary.class, valuesDiary, id);
                 break;
-
+            case MemoList:
+                ContentValues valuesMemo = new ContentValues();
+                valuesMemo.put(STATUS, CustomApplication.RECORD_STATUS_TRASHED);
+                DataSupport.update(Diary.class, valuesMemo, id);
+                break;
+            case CipherList:
+                ContentValues valuesCipher = new ContentValues();
+                valuesCipher.put(STATUS, CustomApplication.RECORD_STATUS_TRASHED);
+                DataSupport.update(Diary.class, valuesCipher, id);
+                break;
         }
 
     }
+
+
+
+
+
+
 }

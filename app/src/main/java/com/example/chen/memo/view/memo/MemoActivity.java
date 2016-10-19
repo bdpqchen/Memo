@@ -72,7 +72,11 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
         if(bundle != null){
             String s = bundle.getString(MEMO_CONTENT);
             editTextMemo.setText(s);
-            editTextMemo.setSelection(s.length());
+            int sLength = 0;
+            if(s != null){
+                sLength = s.length();
+            }
+            editTextMemo.setSelection(sLength);
             id = bundle.getInt(ID);
             existAlarmTimeStamp = bundle.getInt(MEMO_ALARM_TIME);
             if(existAlarmTimeStamp > 0) {
@@ -99,11 +103,9 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
                 memoPresenterImpl.addAlarm(this, mContext);
             }
         }else{
-
             switchAlarm.setTextColor(Color.GRAY);
             LogUtils.v("compoundButton is not checked");
         }
-
     }
 
     public boolean getCheckBoxStatus(){

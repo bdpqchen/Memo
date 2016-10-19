@@ -61,7 +61,7 @@ public class PrefUtils {
         getDefaultsharedPreferences().edit().putBoolean(CIPHER_LOCK, cipherLock).apply();
     }
     public static boolean isCipherLock(){
-        return getDefaultsharedPreferences().getBoolean(CIPHER_LOCK, true);
+        return getDefaultsharedPreferences().getBoolean(CIPHER_LOCK, false);
     }
 
     public static void setErrorPwdCount(int errorPwdCount){

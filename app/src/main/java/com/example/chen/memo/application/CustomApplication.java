@@ -34,6 +34,18 @@ public class CustomApplication extends LitePalApplication {
     * Intent Bundle 字符标识
     *
     * */
+    public static final String KEY_UNIQUE_PASSWORD = "bdpq_unique_pwd";
+    public static final String KEY_PWD = "bdpq_pwd";
+
+    public static final String PWD_NAME = "pwd_name";
+    public static final String PWD_ACCOUNT = "pwd_account";
+    public static final String PWD_PWD = "pwd_pwd";
+    public static final String NAME = "name";
+    public static final String ACCOUNT = "account";
+    public static final String PWD= "pwd";
+
+
+
     public static final String EDIT_TEXT_DIARY = "edit_text_diary";
     public static final String EDIT_TEXT_MEMO = "edit_text_memo";
     public static final String NOW_TIME = "now_time";

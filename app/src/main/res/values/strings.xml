@@ -49,4 +49,13 @@
     <string name="not_finish_memo">备忘内容还没有写哦～～</string>
     <string name="toolbar_title_create_memo">备忘录</string>
     <string name="alter_success">修改成功</string>
+    <string name="item_menu_discard">丢弃</string>
+    <string name="hint_input_name">为该密码取一个名字</string>
+    <string name="hint_input_account">输入密码账户</string>
+    <string name="hint_input_pwd">输入密码</string>
+    <string name="toolbar_title_cihper_list">密码列表</string>
+    <string name="not_is_null">不能为空</string>
+    <string name="already_delete_memo">成功删除该备忘信息</string>
+    <string name="already_delete_cipher">成功删除该密码记录</string>
+    <string name="toolbar_title_create_cipher">密码本</string>
 </resources>

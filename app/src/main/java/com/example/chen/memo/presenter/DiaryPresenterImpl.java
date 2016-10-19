@@ -26,7 +26,6 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
     private CreateDataModelImpl createDataModel;
     private DiaryActivity diaryActivity;
     private String diaryContent;
-    private String nowTime;
     private Bundle diaryBundle;
     private AlterDataModelImpl alterDataModel = new AlterDataModelImpl();
     private Bundle deleteBundle;
@@ -41,8 +40,7 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
         this.diaryDetailActivity = diaryDetailActivity;
     }
 
-    public DiaryPresenterImpl(){
-    }
+    public DiaryPresenterImpl(){}
 
     public void createDiary(Bundle bundle) {
         diaryContent = bundle.getString(EDIT_TEXT_DIARY, "");
@@ -71,7 +69,6 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
             dialog.dismiss();
         }
     };
-
     private DialogInterface.OnClickListener alterPositiveListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {

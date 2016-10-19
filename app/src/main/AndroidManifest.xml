@@ -25,9 +25,10 @@ package="com.example.chen.memo">
     <activity android:name=".view.diary.DiaryListActivity"/>
     <activity android:name=".view.diary.DiaryDetailActivity"/>
     <activity android:name=".view.memo.MemoActivity"/>
-    <activity android:name=".view.memo.MemoDetailActivity"/>
     <activity android:name=".view.memo.MemoListActivity"/>
     <activity android:name=".view.memo.AlarmActivity"/>
+    <activity android:name=".view.cipher.CipherListActivity"/>
+    <activity android:name=".view.cipher.CipherActivity"/>
     <receiver android:name="com.example.chen.memo.service.AlarmReceiver" />
 
     <!-- <activity

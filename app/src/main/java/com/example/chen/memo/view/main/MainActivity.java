@@ -19,6 +19,7 @@ import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.BaseActivity;
+import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
@@ -82,10 +83,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             if (PrefUtils.isCipherLock()) {
                 validatePresenterImpl.login(this, NextActivity.CipherList);
             } else {
-                //startActivity(ViewCipherActivity.class);
+                startActivity(CipherListActivity.class);
             }
         } else if (id == R.id.settings) {
-            validatePresenterImpl.setup(this,NextActivity.Settings);
+            validatePresenterImpl.setup(this, NextActivity.Settings);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

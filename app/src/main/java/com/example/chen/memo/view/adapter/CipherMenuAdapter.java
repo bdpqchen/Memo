@@ -22,40 +22,37 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.chen.memo.R;
-import com.example.chen.memo.bean.Memo;
-import com.example.chen.memo.presenter.MemoPresenterImpl;
+import com.example.chen.memo.bean.CipherBean;
+import com.example.chen.memo.presenter.CipherPresenterImpl;
 import com.example.chen.memo.utils.LogUtils;
-import com.example.chen.memo.utils.TimeStampUtils;
-import com.example.chen.memo.view.memo.MemoActivity;
-import com.example.chen.memo.view.memo.MemoListActivity;
+import com.example.chen.memo.view.cipher.CipherActivity;
+import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuAdapter;
 
-import java.util.Date;
 import java.util.List;
 
 import static com.example.chen.memo.application.CustomApplication.ID;
-import static com.example.chen.memo.application.CustomApplication.MEMO_ALARM_TIME;
-import static com.example.chen.memo.application.CustomApplication.MEMO_CONTENT;
 import static com.example.chen.memo.application.CustomApplication.POSITION;
-import static com.example.chen.memo.application.CustomApplication.PUBLISH_TIME;
+import static com.example.chen.memo.application.CustomApplication.PWD_ACCOUNT;
+import static com.example.chen.memo.application.CustomApplication.PWD_NAME;
+import static com.example.chen.memo.application.CustomApplication.PWD_PWD;
 
 /**
  * Created by YOLANDA on 2016/7/22.
  */
-public class MemoMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
+public class CipherMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
 
-    private List<Memo> datalist;
+    private List<CipherBean> datalist;
     private final int TYPE_WITHOUT = 2;
     private final int TYPE_NORMAL = 1;
     private final int TYPE_FOOTER = 0;
     private Context context;
-    private MemoPresenterImpl memoPresenterImpl;
+    private CipherPresenterImpl cipherPresenterImpl;
 
-    public MemoMenuAdapter(Context context, List<Memo> datalist) {
+    public CipherMenuAdapter(Context context, List<CipherBean> datalist) {
         this.datalist = datalist;
         this.context = context;
     }
@@ -64,30 +61,23 @@ public class MemoMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof NormalViewHolder) {
             NormalViewHolder viewHolder = (NormalViewHolder) holder;
-            final String publishTime = TimeStampUtils.getDatetimeString(datalist.get(position).getPublishTime());
-            final String memo = datalist.get(position).getMemo();
+
             final int id = datalist.get(position).getId();
-            viewHolder.tvPartContent.setText(memo);
-            viewHolder.tvPublishTime.setText(publishTime);
-            int alarmTimeStamp = datalist.get(position).getAlarmTime();
-            if(alarmTimeStamp > 0 ){
-                int nowTimeStamp = Integer.parseInt(((new Date().getTime() + "").substring(0, 9)));
-                if(alarmTimeStamp > nowTimeStamp){
-                    viewHolder.imageAlarm.setImageResource(R.drawable.ic_alarm_black_24dp);
-                }
-                viewHolder.imageAlarm.setVisibility(View.VISIBLE);
-            }else{
-                viewHolder.imageAlarm.setVisibility(View.GONE);
-            }
+            final String name = datalist.get(position).getName();
+            final String account = datalist.get(position).getAccount();
+            final String pwd = datalist.get(position).getPwd();
+            viewHolder.tvName.setText(name);
+            viewHolder.tvAccount.setText(account);
+
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, MemoActivity.class);
+                    Intent intent = new Intent(context, CipherActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putInt(ID, id);
-                    bundle.putString(MEMO_CONTENT, memo);
-                    bundle.putLong(PUBLISH_TIME, datalist.get(position).getPublishTime());
-                    bundle.putInt(MEMO_ALARM_TIME, datalist.get(position).getAlarmTime());
+                    bundle.putString(PWD_NAME, name);
+                    bundle.putString(PWD_ACCOUNT, account);
+                    bundle.putString(PWD_PWD, pwd);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
@@ -97,12 +87,11 @@ public class MemoMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
                 @Override
                 public boolean onLongClick(View v) {
 
-                    memoPresenterImpl = new MemoPresenterImpl();
+                    cipherPresenterImpl = new CipherPresenterImpl();
                     Bundle bundle = new Bundle();
                     bundle.putInt(ID, datalist.get(position).getId());
                     bundle.putInt(POSITION, position);
-                    memoPresenterImpl.deleteMemo((MemoListActivity) context, bundle);
-                    LogUtils.v("longClick");
+                    cipherPresenterImpl.deleteCipher((CipherListActivity) context, bundle);
                     return true;
                 }
             });
@@ -112,7 +101,7 @@ public class MemoMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
     @Override
     public View onCreateContentView(ViewGroup parent, int viewType) {
         if (viewType == TYPE_NORMAL) {
-            return LayoutInflater.from(context).inflate(R.layout.item_memo_normal, parent, false);
+            return LayoutInflater.from(context).inflate(R.layout.item_cipher_normal, parent, false);
         } else if (viewType == TYPE_FOOTER) {
             return LayoutInflater.from(context).inflate(R.layout.item_footer, parent, false);
         } else if (viewType == TYPE_WITHOUT) {
@@ -140,7 +129,7 @@ public class MemoMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
         //正常item
         if (position + 1 < itemCount) {
             return TYPE_NORMAL;
-        }else{
+        } else {
             return TYPE_FOOTER;
         }
     }
@@ -152,15 +141,15 @@ public class MemoMenuAdapter extends SwipeMenuAdapter<RecyclerView.ViewHolder> {
 
 
     private class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvPartContent, tvPublishTime;
-        ImageView imageAlarm;
+        TextView tvName, tvAccount;
+
         NormalViewHolder(View inflate) {
             super(inflate);
             inflate.setOnClickListener(this);
-            tvPartContent = (TextView) inflate.findViewById(R.id.tv_part_content);
-            tvPublishTime = (TextView) inflate.findViewById(R.id.tv_publish_time);
-            imageAlarm = (ImageView) inflate.findViewById(R.id.image_alarm);
+            tvName = (TextView) inflate.findViewById(R.id.tv_name);
+            tvAccount = (TextView) inflate.findViewById(R.id.tv_account);
         }
+
         @Override
         public void onClick(View v) {
 

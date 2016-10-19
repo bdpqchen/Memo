@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.model.ViewListModelImpl;
+import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
@@ -19,9 +20,9 @@ public class ViewListPresenterImpl implements IViewListPresenter {
 
     private static ViewListModelImpl viewListModel = new ViewListModelImpl();
 
-    public void initData(int type, Context context){
+    public void initData(int type, Context context) {
 
-        switch (type){
+        switch (type) {
             case CustomApplication.DIARY:
                 viewListModel.initDiaryData((DiaryListActivity) context);
                 break;
@@ -29,40 +30,44 @@ public class ViewListPresenterImpl implements IViewListPresenter {
                 viewListModel.initMemoData((MemoListActivity) context);
                 break;
             case CustomApplication.CIPHER:
-                viewListModel.initCipherData();
+                viewListModel.initCipherData((CipherListActivity) context);
                 break;
         }
 
     }
 
-    public void loadMoreData(int type, Context context, int offset){
-        switch (type){
+    public void loadMoreData(int type, Context context, int offset) {
+        switch (type) {
             case CustomApplication.DIARY:
                 viewListModel.loadMoreDiaryData((DiaryListActivity) context, offset);
                 break;
-
+            case CustomApplication.MEMO:
+                viewListModel.loadMoreMemoData((MemoListActivity) context, offset);
+                break;
+            case CustomApplication.CIPHER:
+                viewListModel.loadMoreCipherData((CipherListActivity) context, offset);
+                break;
         }
 
     }
 
     public void getDataCount(int type, Context context) {
-        switch (type){
+        switch (type) {
             case CustomApplication.DIARY:
                 viewListModel.getDiaryDataCount((DiaryListActivity) context);
                 break;
             case CustomApplication.MEMO:
-//                viewListModel.getMemoDataCount();
+                viewListModel.getMemoDataCount((MemoListActivity) context);
                 break;
             case CustomApplication.CIPHER:
-//                viewListModel.getCipherDataCount();
+                viewListModel.getCipherDataCount((CipherListActivity) context);
                 break;
         }
     }
 
 
-    public void discardRecord(Context context, NextActivity viewType, int id){
+    public void discardRecord(Context context, NextActivity viewType, int id) {
         viewListModel.discardRecord(context, viewType, id);
-
     }
 
 }

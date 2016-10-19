@@ -15,8 +15,10 @@ import com.example.chen.memo.service.AlarmReceiver;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.TimeStampUtils;
 import com.example.chen.memo.view.dialog.SimpleDialog;
+import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.memo.AlarmActivity;
 import com.example.chen.memo.view.memo.MemoActivity;
+import com.example.chen.memo.view.memo.MemoListActivity;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -31,6 +33,7 @@ import static com.example.chen.memo.application.CustomApplication.ID;
 import static com.example.chen.memo.application.CustomApplication.MEMO_ALARM_TIME;
 import static com.example.chen.memo.application.CustomApplication.MEMO_CONTENT;
 import static com.example.chen.memo.application.CustomApplication.MSG;
+import static com.example.chen.memo.application.CustomApplication.POSITION;
 
 
 /**
@@ -61,6 +64,10 @@ public class MemoPresenterImpl  implements IMemoPresenter,
     private MemoActivity memoActivity;
     private Context context;
     private Bundle alterBundle;
+    private MemoListActivity memoListActivity;
+    private Bundle deleteBundle;
+
+    private AlterDataModelImpl alterDataModel = new AlterDataModelImpl();
 
     @Override
     public void addAlarm(final MemoActivity memoActivity, Context context){
@@ -123,7 +130,7 @@ public class MemoPresenterImpl  implements IMemoPresenter,
 
         bundle.putInt(ID, id);
         bundle.putString(MEMO_CONTENT, memoContent);
-        AlterDataModelImpl alterDataModel = new AlterDataModelImpl();
+
         alterDataModel.alterMemo(memoActivity, bundle);
     }
 
@@ -191,5 +198,25 @@ public class MemoPresenterImpl  implements IMemoPresenter,
         }
     }
 
+    public void deleteMemo(MemoListActivity memoListActivity, Bundle bundle){
+        this.memoListActivity = memoListActivity;
+        SimpleDialog simpleDialog = new SimpleDialog(memoListActivity);
+        this.deleteBundle = bundle;
 
+        simpleDialog.createDialog(memoListActivity.getString(R.string.dialog_title_delete_tips),
+                memoListActivity.getString(R.string.delete_diary_message),
+                memoListActivity.getString(R.string.btn_negative),negativeListener,
+                memoListActivity.getString(R.string.btn_positive),deletePositiveListener
+        );
+    }
+
+    private DialogInterface.OnClickListener deletePositiveListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            //删除该item记录
+            alterDataModel.deleteDiary(deleteBundle.getInt(ID,0));
+            //在列表中移除
+            memoListActivity.onDeleteItem(deleteBundle.getInt(POSITION,0));
+        }
+    };
 }

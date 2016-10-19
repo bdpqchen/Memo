@@ -12,6 +12,8 @@ import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.dialog.SetupPasswordDialog;
 import com.example.chen.memo.view.main.MainActivity;
 
+import static com.example.chen.memo.application.CustomApplication.KEY_UNIQUE_PASSWORD;
+
 /**
  * Created by cdc on 16-9-23.
  */
@@ -32,7 +34,7 @@ public class ValidateModelImpl implements IValidateModel{
                 //隐藏输入法
                 view.hideKeyboard();
                 try{
-                    String pwd = SimpleCrypto.enCrypto(input_pwd, String.valueOf(R.string.key_password));
+                    String pwd = SimpleCrypto.enCrypto(input_pwd, KEY_UNIQUE_PASSWORD);
                     //密码验证成功
                     if(pwd.equals(unique_pwd) && !input_pwd.equals("")){
                         dialog.dismiss();
@@ -80,7 +82,7 @@ public class ValidateModelImpl implements IValidateModel{
                 view.hideKeyboard();
                 if (pwd1.equals(pwd2) && !pwd1.equals("")) {
                     try {
-                        String pwd = SimpleCrypto.enCrypto(pwd1, String.valueOf(R.string.key_password));
+                        String pwd = SimpleCrypto.enCrypto(pwd1, KEY_UNIQUE_PASSWORD);
                         PrefUtils.setUniquePwd(pwd);
                         PrefUtils.setFirstOpen(false);
                         dialog.dismiss();

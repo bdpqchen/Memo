@@ -30,7 +30,7 @@ public class CustomDialog extends Dialog {
     public CustomDialog(Context context) {
         super(context);
         setTitle("请输入密码");
-        //setCustomDialog();
+        setCustomDialog();
     }
 
     public void setCustomDialog() {

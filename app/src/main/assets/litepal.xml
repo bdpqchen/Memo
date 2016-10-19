@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="jianji"/>
-    <version value="3"/>
+    <version value="4"/>
     <list>
         <mapping class="com.example.chen.memo.bean.Diary"/>
         <mapping class="com.example.chen.memo.bean.Memo"/>
+        <mapping class="com.example.chen.memo.bean.CipherBean" />
         <!--<mapping class="com.example.chen.memo.bean.CipherBean"></mapping>
         <mapping class="com.example.chen.memo.bean.SettingsBean"></mapping>-->
     </list>

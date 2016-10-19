@@ -1,6 +1,6 @@
-package com.example.chen.memo.view.diary;
+package com.example.chen.memo.view.cipher;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,12 +18,12 @@ import android.widget.Toast;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.application.CustomApplication;
-import com.example.chen.memo.bean.Diary;
-import com.example.chen.memo.event.DiaryEvent;
+import com.example.chen.memo.bean.CipherBean;
+import com.example.chen.memo.event.CipherEvent;
 import com.example.chen.memo.presenter.ViewListPresenterImpl;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.view.BaseActivity;
-import com.example.chen.memo.view.adapter.DiaryMenuAdapter;
+import com.example.chen.memo.view.adapter.CipherMenuAdapter;
 import com.example.chen.memo.view.common.DividerItemDecoration;
 import com.example.chen.memo.view.common.NextActivity;
 import com.yanzhenjie.recyclerview.swipe.Closeable;
@@ -42,57 +42,54 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-import static com.example.chen.memo.application.CustomApplication.DIARY_CONTENT;
 import static com.example.chen.memo.application.CustomApplication.RECORD_LIST_LIMIT;
 
 /**
- * Created by cdc on 16-9-24.
+ * Created by cdc on 16-10-18.
  */
 
-public class DiaryListActivity extends BaseActivity implements View.OnClickListener {
+public class CipherListActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.fab)
-    FloatingActionButton fab;
     @InjectView(R.id.recyclerview)
     SwipeMenuRecyclerView mRecyclerView;
-    private LinearLayoutManager linearLayoutManager;
-    private List<Diary> datalist = new ArrayList<>();
-    private DiaryMenuAdapter recyclerAdapter;
-    private boolean loading = false;
+    @InjectView(R.id.fab)
+    FloatingActionButton fab;
     private ViewListPresenterImpl viewListPresenter;
-    private int offset;
+    private LinearLayoutManager linearLayoutManager;
+    private Context mContext;
+    private CipherMenuAdapter recyclerAdapter;
+    private List<CipherBean> datalist = new ArrayList<>();
+    private boolean loading = false;
+    private int offset = 0;
     private int dataCount;
-    private Activity mContext;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mContext = this;
-        setContentView(R.layout.activity_diary_list);
+    protected void onCreate(Bundle savedInstantState) {
+        super.onCreate(savedInstantState);
+        setContentView(R.layout.activity_cipher_list);
         ButterKnife.inject(this);
+        mContext = this;
         EventBus.getDefault().register(this);
 
-        toolbar.setTitle(R.string.toolbar_title_diary_list);
+        toolbar.setTitle(R.string.toolbar_title_cihper_list);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewListPresenter = new ViewListPresenterImpl();
-        viewListPresenter.initData(CustomApplication.DIARY, this);
+        viewListPresenter.initData(CustomApplication.CIPHER, this);
         linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recyclerview);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(16));
 
-        // 设置菜单创建器。
+        // 设置菜单创建器
         mRecyclerView.setSwipeMenuCreator(swipeMenuCreator);
         //设置菜单item点击监听
         mRecyclerView.setSwipeMenuItemClickListener(menuItemClickListener);
-
-        recyclerAdapter = new DiaryMenuAdapter(this, datalist);
+        recyclerAdapter = new CipherMenuAdapter(this, datalist);
         mRecyclerView.setAdapter(recyclerAdapter);
-
         fab.setOnClickListener(this);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -104,7 +101,7 @@ public class DiaryListActivity extends BaseActivity implements View.OnClickListe
                 progressBar = (ProgressBar) findViewById(R.id.progressBar);
                 final TextView noMoreData = (TextView) findViewById(R.id.no_more_data);
 
-                if(totalCount < RECORD_LIST_LIMIT){
+                if (totalCount < RECORD_LIST_LIMIT) {
                     if (progressBar != null) {
                         progressBar.setVisibility(View.GONE);
                     }
@@ -117,8 +114,8 @@ public class DiaryListActivity extends BaseActivity implements View.OnClickListe
                     LogUtils.i("offset", String.valueOf(offset));
                     LogUtils.i("dataCount", String.valueOf(dataCount));
                     LogUtils.i("datalistSize", String.valueOf(datalist.size()));
-                    viewListPresenter.loadMoreData(CustomApplication.DIARY, DiaryListActivity.this, offset);
-                    viewListPresenter.getDataCount(CustomApplication.DIARY, DiaryListActivity.this);
+                    viewListPresenter.loadMoreData(CustomApplication.CIPHER, CipherListActivity.this, offset);
+                    viewListPresenter.getDataCount(CustomApplication.CIPHER, CipherListActivity.this);
                     fab.setVisibility(View.GONE);
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -138,11 +135,34 @@ public class DiaryListActivity extends BaseActivity implements View.OnClickListe
                             loading = false;
                         }
                     }, 400);
-                }else if(lastItem +2 <totalCount && !loading){
+                } else if (lastItem + 2 < totalCount && !loading) {
                     fab.setVisibility(View.VISIBLE);
                 }
+
             }
         });
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.fab:
+                startActivity(new Intent(this, CipherActivity.class));
+                break;
+
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -174,6 +194,7 @@ public class DiaryListActivity extends BaseActivity implements View.OnClickListe
             }
         }
     };
+
     /**
      * 菜单点击监听。
      */
@@ -190,64 +211,50 @@ public class DiaryListActivity extends BaseActivity implements View.OnClickListe
             closeable.smoothCloseMenu();// 关闭被点击的菜单。
             // TODO 如果是删除：推荐调用Adapter.notifyItemRemoved(position)，不推荐Adapter.notifyDataSetChanged();
             if (menuPosition == 0) {// 删除按钮被点击。
-                viewListPresenter.discardRecord(DiaryListActivity.this, NextActivity.DiaryList, datalist.get(adapterPosition).getId());
+                viewListPresenter.discardRecord(CipherListActivity.this, NextActivity.CipherList, datalist.get(adapterPosition).getId());
                 datalist.remove(adapterPosition);
                 recyclerAdapter.notifyItemRemoved(adapterPosition);
             }
         }
     };
-    /*
-    * 长按删除
-    * */
-    public void onDeleteItem(int position){
-        datalist.remove(position);
-        recyclerAdapter.notifyItemRemoved(position);
-        this.onToastMessage(getString(R.string.already_delete_diary));
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onToastMessage(String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
-    }
-
-    public void onInitSuccess(List<Diary> datalist) {
-        if(datalist.size() > 0){
-            this.datalist.addAll(datalist);
-        }
-    }
-
-    public void onGetDataCount(int dataCount) {
-        this.dataCount = dataCount;
-    }
-
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab:
-                startActivity(new Intent(this, DiaryActivity.class));
-                break;
+    public void onInitSuccess(List<CipherBean> cipherList) {
+        if (cipherList.size() > 0) {
+            this.datalist.addAll(cipherList);
         }
     }
 
     @Subscribe
-    public void onEventMainThread(DiaryEvent event) {
-        String msg = event.getMsg();
+    public void onEventMainThread(CipherEvent event) {
+//        int type = event.getType();
+        /*if (type == 1) {
+            //创建数据
+
+        } else if (type == 0) {*/
+        //更新数据
         offset = 0;
         datalist.removeAll(datalist);
-        viewListPresenter.initData(CustomApplication.DIARY, this);
+        viewListPresenter.initData(CustomApplication.CIPHER, this);
         //startActivity 执行后会销毁 recycleradapter 对象
-        recyclerAdapter = new DiaryMenuAdapter(this, datalist);
+        recyclerAdapter = new CipherMenuAdapter(this, datalist);
         mRecyclerView.setAdapter(recyclerAdapter);
         //更新列表
         recyclerAdapter.notifyDataSetChanged();
+        //}
+
     }
 
+    public void onGetDataCount(int count) {
+        this.dataCount = count;
+    }
+
+    public void onDeleteItem(int position) {
+        datalist.remove(position);
+        recyclerAdapter.notifyItemRemoved(position);
+        this.onToastMessage(getString(R.string.already_delete_cipher));
+    }
+
+    private void onToastMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 }

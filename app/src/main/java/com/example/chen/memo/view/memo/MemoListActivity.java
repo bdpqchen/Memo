@@ -14,16 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.bean.Memo;
-import com.example.chen.memo.event.DiaryEvent;
 import com.example.chen.memo.event.MemoEvent;
 import com.example.chen.memo.presenter.ViewListPresenterImpl;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.view.BaseActivity;
-import com.example.chen.memo.view.adapter.DiaryMenuAdapter;
 import com.example.chen.memo.view.adapter.MemoMenuAdapter;
 import com.example.chen.memo.view.common.DividerItemDecoration;
 import com.example.chen.memo.view.common.NextActivity;
@@ -182,7 +181,7 @@ public class MemoListActivity extends BaseActivity implements View.OnClickListen
                 SwipeMenuItem deleteItem = new SwipeMenuItem(mContext)
                         .setBackgroundDrawable(R.drawable.selector_red)
                         .setImage(R.mipmap.ic_action_delete)
-                        .setText("丢弃") // 文字，还可以设置文字颜色，大小等。。
+                        .setText(R.string.item_menu_discard) // 文字，还可以设置文字颜色，大小等。。
                         .setTextColor(Color.WHITE)
                         .setWidth(width)
                         .setHeight(height);
@@ -245,6 +244,20 @@ public class MemoListActivity extends BaseActivity implements View.OnClickListen
         recyclerAdapter.notifyDataSetChanged();
         //}
 
+    }
+
+    public void onGetDataCount(int count) {
+        this.dataCount = count;
+    }
+
+    public void onDeleteItem(int position) {
+        datalist.remove(position);
+        recyclerAdapter.notifyItemRemoved(position);
+        this.onToastMessage(getString(R.string.already_delete_memo));
+    }
+
+    public void onToastMessage(String msg){
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
 }
