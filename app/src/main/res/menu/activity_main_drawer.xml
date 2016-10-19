@@ -13,6 +13,10 @@
             android:id="@+id/cipher"
             android:icon="@android:drawable/ic_lock_lock"
             android:title="@string/view_cipher" />
+        <item
+            android:id="@+id/dump"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/view_dump" />
     </group>
 
     <item android:title="more">

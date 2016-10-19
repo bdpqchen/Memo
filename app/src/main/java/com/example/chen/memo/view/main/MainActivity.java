@@ -22,6 +22,7 @@ import com.example.chen.memo.view.BaseActivity;
 import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
 
 import butterknife.ButterKnife;
@@ -80,12 +81,24 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivity(MemoListActivity.class);
             }
         } else if (id == R.id.cipher) {
+
             if (PrefUtils.isCipherLock()) {
                 validatePresenterImpl.login(this, NextActivity.CipherList);
             } else {
                 startActivity(CipherListActivity.class);
             }
-        } else if (id == R.id.settings) {
+        } else if(id == R.id.dump){
+            /* if (PrefUtils.isDumpLock()) {
+                validatePresenterImpl.login(this, NextActivity.CipherList);
+            } else {
+                startActivity(CipherListActivity.class);
+            }*/
+
+            startActivity(DumpListActivity.class);
+
+        }
+
+        else if (id == R.id.settings) {
             validatePresenterImpl.setup(this, NextActivity.Settings);
         }
 

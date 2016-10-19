@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -15,18 +14,9 @@ import com.example.chen.memo.SimpleCrypto;
 import com.example.chen.memo.presenter.CipherPresenterImpl;
 import com.example.chen.memo.view.BaseActivity;
 
-import java.security.InvalidKeyException;
-import java.security.spec.InvalidKeySpecException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-import static com.example.chen.memo.R.id.cipher;
-import static com.example.chen.memo.R.id.editTextMemo;
 import static com.example.chen.memo.application.CustomApplication.ID;
 import static com.example.chen.memo.application.CustomApplication.KEY_PWD;
 import static com.example.chen.memo.application.CustomApplication.PWD_ACCOUNT;
@@ -79,7 +69,6 @@ public class CipherActivity extends BaseActivity implements View.OnClickListener
                 e.printStackTrace();
             }
         }
-
 
     }
 

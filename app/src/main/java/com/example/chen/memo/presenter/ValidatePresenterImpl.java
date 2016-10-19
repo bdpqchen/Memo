@@ -10,6 +10,7 @@ import com.example.chen.memo.CustomDialog;
 import com.example.chen.memo.R;
 import com.example.chen.memo.SimpleCrypto;
 import com.example.chen.memo.model.ValidateModelImpl;
+import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.main.MainActivity;
@@ -29,17 +30,25 @@ public class ValidatePresenterImpl implements IValidatePresenter {
     public void login(final MainActivity view, NextActivity nextActivity){
         //判断密码错误次数  >=7 提示找回密码
         if(PrefUtils.getErrorPwdCount() < maxErrorPwdTime){
+            LogUtils.i("getErrorCount ", String.valueOf(PrefUtils.getErrorPwdCount()));
             this.nextActivity = nextActivity;
             this.view = view;
             validateModel.checkLogin(view, this);
         }else{
+            if(!PrefUtils.isImitateData()){
+                validateModel.initImitateData();
+                PrefUtils.setImitateData(true);
+            }
+
             /*找回密码*/
         }
     }
+
+
+
     @Override
     public void loginSuccess() {
-        Intent intent = new Intent();
-        intent.setClass(view, nextActivity.getClass());
+        Intent intent = new Intent(view, nextActivity.getClass());
         view.startActivity(intent);
     }
 

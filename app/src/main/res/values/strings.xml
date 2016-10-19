@@ -58,4 +58,10 @@
     <string name="already_delete_memo">成功删除该备忘信息</string>
     <string name="already_delete_cipher">成功删除该密码记录</string>
     <string name="toolbar_title_create_cipher">密码本</string>
+    <string name="toolbar_title_recycled_list">回收站</string>
+    <string name="view_dump">回收站</string>
+    <string name="revert_success">还原成功</string>
+    <string name="delete_success">已永久删除</string>
+    <string name="item_menu_revert">还原</string>
+    <string name="find_back_pwd">找回密码</string>
 </resources>

@@ -28,8 +28,8 @@ public class SetupPasswordDialog extends Dialog{
 
     private void setPasswordDialog() {
 
-        View mView = LayoutInflater.from(getContext()).inflate(R.layout.password_dialog, null);
-        //title = (TextView) mView.findViewById(R.id.title);
+        View mView = LayoutInflater.from(getContext()).inflate(R.layout.setup_password_dialog, null);
+
         editText1 = (EditText) mView.findViewById(R.id.pwd1);
         editText2 = (EditText) mView.findViewById(R.id.pwd2);
         positiveButton = (Button) mView.findViewById(R.id.positive);
@@ -44,6 +44,7 @@ public class SetupPasswordDialog extends Dialog{
                            }
                        },
                 200);
+
     }
 
     public View getEditText1(){

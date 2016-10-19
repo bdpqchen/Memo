@@ -8,17 +8,30 @@ import android.view.View;
 import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.bean.CipherBean;
 import com.example.chen.memo.bean.Diary;
+import com.example.chen.memo.bean.Dump;
 import com.example.chen.memo.bean.Memo;
+import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
 
 import org.litepal.crud.DataSupport;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.crypto.Cipher;
+
+import static com.example.chen.memo.application.CustomApplication.CIPHER;
+import static com.example.chen.memo.application.CustomApplication.DIARY;
+import static com.example.chen.memo.application.CustomApplication.MEMO;
 import static com.example.chen.memo.application.CustomApplication.RECORD_LIST_LIMIT;
+import static com.example.chen.memo.application.CustomApplication.RECORD_STATUS_TRASHED;
 import static com.example.chen.memo.application.CustomApplication.STATUS;
 
 /**
@@ -90,8 +103,8 @@ public class ViewListModelImpl implements IViewListModel {
     }
 
     @Override
-    public void discardRecord(Context context, NextActivity viewType, int id){
-        switch (viewType){
+    public void discardRecord(Context context, NextActivity viewType, int id) {
+        switch (viewType) {
             case DiaryList:
                 ContentValues valuesDiary = new ContentValues();
                 valuesDiary.put(STATUS, CustomApplication.RECORD_STATUS_TRASHED);
@@ -100,19 +113,101 @@ public class ViewListModelImpl implements IViewListModel {
             case MemoList:
                 ContentValues valuesMemo = new ContentValues();
                 valuesMemo.put(STATUS, CustomApplication.RECORD_STATUS_TRASHED);
-                DataSupport.update(Diary.class, valuesMemo, id);
+                DataSupport.update(Memo.class, valuesMemo, id);
                 break;
             case CipherList:
                 ContentValues valuesCipher = new ContentValues();
                 valuesCipher.put(STATUS, CustomApplication.RECORD_STATUS_TRASHED);
-                DataSupport.update(Diary.class, valuesCipher, id);
+                DataSupport.update(CipherBean.class, valuesCipher, id);
                 break;
         }
 
     }
 
+    @Override
+    public void initDumpData(DumpListActivity dumpListActivity) {
+        List<Diary> diaryList = DataSupport.where(STATUS_WHERE, RECORD_STATUS_TRASHED + "").order(ORDERBY_ID_DESC).find(Diary.class);
+        List<Memo> memoList = DataSupport.where(STATUS_WHERE, RECORD_STATUS_TRASHED + "").order(ORDERBY_ID_DESC).find(Memo.class);
+        List<CipherBean> cipherBeanList = DataSupport.where(STATUS_WHERE, RECORD_STATUS_TRASHED + "").order(ORDERBY_ID_DESC).find(CipherBean.class);
+        int count = memoList.size() + diaryList.size() + cipherBeanList.size();
+        LogUtils.i("count", String.valueOf(count));
+        List<Dump> dumpList = new ArrayList<>(count);
 
+        if (diaryList.size() > 0) {
+            for (int i = 0; i < diaryList.size(); i++) {
+                Dump dump = new Dump();
+                dump.setType(DIARY);
+                dump.setId(diaryList.get(i).getId());
+                dump.setTitle(diaryList.get(i).getDiary());
+                dumpList.add(dump);
+            }
+        }
 
+        if (memoList.size() > 0) {
+            for (int i = 0; i < memoList.size(); i++) {
+                Dump dump = new Dump();
+                dump.setType(MEMO);
+                dump.setId(memoList.get(i).getId());
+                dump.setTitle(memoList.get(i).getMemo());
+                dumpList.add(dump);
+            }
+        }
+        if (cipherBeanList.size() > 0) {
+            for (int i = 0; i < cipherBeanList.size(); i++) {
+                Dump dump = new Dump();
+                dump.setType(CIPHER);
+                dump.setId(cipherBeanList.get(i).getId());
+                dump.setTitle(cipherBeanList.get(i).getName());
+                dumpList.add(dump);
+            }
+        }
+
+        dumpListActivity.onInitSuccess(dumpList);
+
+    }
+
+    public void revertDiary(DumpListActivity dumpListActivity, int id) {
+        ContentValues valuesDiary = new ContentValues();
+        valuesDiary.put(STATUS, CustomApplication.RECORD_STATUS_VALID);
+        DataSupport.update(Diary.class, valuesDiary, id);
+        dumpListActivity.onRevertSuccess();
+    }
+
+    public void revertMemo(DumpListActivity dumpListActivity, int id) {
+        ContentValues valuesMemo = new ContentValues();
+        valuesMemo.put(STATUS, CustomApplication.RECORD_STATUS_VALID);
+        DataSupport.update(Memo.class, valuesMemo, id);
+        dumpListActivity.onRevertSuccess();
+
+    }
+
+    public void revertCipher(DumpListActivity dumpListActivity, int id) {
+        ContentValues valuesCipher = new ContentValues();
+        valuesCipher.put(STATUS, CustomApplication.RECORD_STATUS_VALID);
+        DataSupport.update(CipherBean.class, valuesCipher, id);
+        dumpListActivity.onRevertSuccess();
+    }
+
+    public void deleteDiary(DumpListActivity dumpListActivity, int id) {
+        ContentValues valuesDiary = new ContentValues();
+        valuesDiary.put(STATUS, CustomApplication.RECORD_STATUS_INVALID);
+        DataSupport.update(Diary.class, valuesDiary, id);
+        dumpListActivity.onDeleteSuccess();
+    }
+
+    public void deleteMemo(DumpListActivity dumpListActivity, int id) {
+        ContentValues valuesMemo = new ContentValues();
+        valuesMemo.put(STATUS, CustomApplication.RECORD_STATUS_INVALID);
+        DataSupport.update(Memo.class, valuesMemo, id);
+        dumpListActivity.onDeleteSuccess();
+    }
+
+    public void deleteCipher(DumpListActivity dumpListActivity, int id) {
+        ContentValues valuesCipher = new ContentValues();
+        valuesCipher.put(STATUS, CustomApplication.RECORD_STATUS_INVALID);
+        DataSupport.update(CipherBean.class, valuesCipher, id);
+        dumpListActivity.onDeleteSuccess();
+    }
 
 
 

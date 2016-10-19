@@ -18,6 +18,7 @@ public class PrefUtils {
     private static final String MEMO_LOCK = "memo_lock";
     private static final String CIPHER_LOCK = "cipher_lock";
     private static final String ERROR_PWD_COUNT = "error_pwd_count";
+    private static final String IMITATE_DATA = "imitation_data";
 
 
     /*
@@ -69,6 +70,13 @@ public class PrefUtils {
     }
     public static int getErrorPwdCount(){
         return getDefaultsharedPreferences().getInt(ERROR_PWD_COUNT, 0);
+    }
+
+    public static void setImitateData(boolean b){
+        getDefaultsharedPreferences().edit().putBoolean(IMITATE_DATA, b).apply();
+    }
+    public static boolean isImitateData(){
+        return getDefaultsharedPreferences().getBoolean(IMITATE_DATA, false);
     }
 
 

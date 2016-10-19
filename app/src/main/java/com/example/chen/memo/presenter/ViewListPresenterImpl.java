@@ -9,8 +9,13 @@ import com.example.chen.memo.model.ViewListModelImpl;
 import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
 import com.yanzhenjie.recyclerview.swipe.OnSwipeMenuItemClickListener;
+
+import static com.example.chen.memo.application.CustomApplication.CIPHER;
+import static com.example.chen.memo.application.CustomApplication.DIARY;
+import static com.example.chen.memo.application.CustomApplication.MEMO;
 
 /**
  * Created by cdc on 16-9-24.
@@ -23,7 +28,7 @@ public class ViewListPresenterImpl implements IViewListPresenter {
     public void initData(int type, Context context) {
 
         switch (type) {
-            case CustomApplication.DIARY:
+            case DIARY:
                 viewListModel.initDiaryData((DiaryListActivity) context);
                 break;
             case CustomApplication.MEMO:
@@ -38,7 +43,7 @@ public class ViewListPresenterImpl implements IViewListPresenter {
 
     public void loadMoreData(int type, Context context, int offset) {
         switch (type) {
-            case CustomApplication.DIARY:
+            case DIARY:
                 viewListModel.loadMoreDiaryData((DiaryListActivity) context, offset);
                 break;
             case CustomApplication.MEMO:
@@ -53,7 +58,7 @@ public class ViewListPresenterImpl implements IViewListPresenter {
 
     public void getDataCount(int type, Context context) {
         switch (type) {
-            case CustomApplication.DIARY:
+            case DIARY:
                 viewListModel.getDiaryDataCount((DiaryListActivity) context);
                 break;
             case CustomApplication.MEMO:
@@ -70,4 +75,31 @@ public class ViewListPresenterImpl implements IViewListPresenter {
         viewListModel.discardRecord(context, viewType, id);
     }
 
+    public void revertRecord(DumpListActivity dumpListActivity, int type, int id) {
+        switch (type){
+            case DIARY:
+                viewListModel.revertDiary(dumpListActivity, id);
+                break;
+            case MEMO:
+                viewListModel.revertMemo(dumpListActivity, id);
+                break;
+            case CIPHER:
+                viewListModel.revertCipher(dumpListActivity, id);
+                break;
+        }
+    }
+
+    public void deleteRecord(DumpListActivity dumpListActivity, int type, int id) {
+        switch (type){
+            case DIARY:
+                viewListModel.deleteDiary(dumpListActivity, id);
+                break;
+            case MEMO:
+                viewListModel.deleteMemo(dumpListActivity, id);
+                break;
+            case CIPHER:
+                viewListModel.deleteCipher(dumpListActivity, id);
+                break;
+        }
+    }
 }

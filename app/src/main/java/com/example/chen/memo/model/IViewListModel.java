@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
 
 /**
@@ -31,4 +32,6 @@ public interface IViewListModel {
     void getCipherDataCount(CipherListActivity view);
 
     void discardRecord(Context context, NextActivity viewType, int id);
+
+    void initDumpData(DumpListActivity dumpListActivity);
 }

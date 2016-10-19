@@ -17,9 +17,14 @@ public class CustomApplication extends LitePalApplication {
     public static Context context;
     public static List<Activity> activities = new ArrayList<>();
     private static final int dbversion = 8;
+
     public static final int DIARY = 1;
     public static final int MEMO = 2;
     public static final int CIPHER = 3;
+
+    public static final String DIARY_NAME = "日记";
+    public static final String MEMO_NAME = "备忘";
+    public static final String CIPHER_NAME = "密码";
 
     /*数据库中 记录的状态(status)
     * @INVALID 已删除（伪删除delete）
