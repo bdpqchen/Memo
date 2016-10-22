@@ -36,7 +36,7 @@
     <string name="save_data_succeed">保存成功</string>
     <string name="save_data_fail" >保存失败</string>
     <string name="no_more_data">没有更多了......</string>
-    <string name="enter_write_mode">双击进入修改模式</string>
+    <string name="enter_write_mode">双击文字进入修改模式</string>
     <string name="dialog_title_alter_tips">更改提示</string>
     <string name="alter_diary_message">要保存所做的更改吗？</string>
     <string name="dialog_title_delete_tips">删除提示</string>
@@ -64,4 +64,13 @@
     <string name="delete_success">已永久删除</string>
     <string name="item_menu_revert">还原</string>
     <string name="find_back_pwd">找回密码</string>
+    <string name="warn">提示</string>
+    <string name="choose_you_wrote_one">请选出你曾写过的一项</string>
+    <string name="tips_find_back_pwd">你已经多次输入错误的密码， 请找回你的密码</string>
+    <string name="find_back_pwd_success">找回密码失败</string>
+    <string name="verify_success">验证成功</string>
+    <string name="sure_do_not_save_data">确定不保存所写的内容吗？</string>
+
+
+
 </resources>

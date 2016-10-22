@@ -1,0 +1,12 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AndroidLintWrongViewCast" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GroovyContinueOrBreakFromFinallyBlock" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="GroovyEmptyCatchBlock" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="GroovyEmptyFinallyBlock" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="GroovyEmptyTryBlock" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="GroovyReturnFromFinallyBlock" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="GroovyThrowFromFinallyBlock" enabled="true" level="WARNING" enabled_by_default="true" />
+  </profile>
+</component>

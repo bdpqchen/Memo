@@ -20,12 +20,7 @@ import com.example.chen.memo.view.memo.MemoListActivity;
 import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.crypto.Cipher;
 
 import static com.example.chen.memo.application.CustomApplication.CIPHER;
 import static com.example.chen.memo.application.CustomApplication.DIARY;

@@ -1,11 +1,13 @@
 package com.example.chen.memo.view.diary;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.example.chen.memo.R;
 import com.example.chen.memo.presenter.DiaryPresenterImpl;
 import com.example.chen.memo.view.BaseActivity;
+import com.example.chen.memo.view.dialog.SimpleDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -33,8 +36,6 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
     Toolbar toolbar;
     @InjectView(R.id.diary_content)
     EditText etDiaryContent;
-    @InjectView(R.id.fabAlter)
-    FloatingActionButton fabAlter;
 
     private String diaryContent;
     private int id;
@@ -42,6 +43,7 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
     private static boolean isDoubleClick = false;
     private DiaryPresenterImpl diaryPresenter;
     private Bundle bundle;
+    private boolean isEditMode = false;
 
 
     @Override
@@ -62,7 +64,6 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
         }
         etDiaryContent.setText(diaryContent);
         etDiaryContent.setOnClickListener(this);
-        fabAlter.setOnClickListener(this);
     }
 
     @Override
@@ -70,10 +71,6 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.diary_content:
                 doubleClick();
-                break;
-            case R.id.fabAlter:
-                bundle.putString(DIARY_CONTENT, String.valueOf(etDiaryContent.getText()));
-                diaryPresenter.alterDiary(bundle);
                 break;
         }
     }
@@ -93,6 +90,7 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
             etDiaryContent.requestFocus();
             InputMethodManager inputManager = (InputMethodManager)etDiaryContent.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.showSoftInput(etDiaryContent, 0);
+            isEditMode = true;
             isDoubleClick = false;
         }
     }
@@ -122,8 +120,37 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.menu_done:
+                bundle.putString(DIARY_CONTENT, String.valueOf(etDiaryContent.getText()));
+                diaryPresenter.alterDiary(bundle);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu ) {
+        getMenuInflater().inflate(R.menu.menu_create_data, menu);
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        if(etDiaryContent.getText().length() > 0 && isEditMode){
+            SimpleDialog simpleDialog = new SimpleDialog(this);
+            simpleDialog.createDialog(getString(R.string.warn), getString(R.string.sure_do_not_save_data), getString(R.string.btn_negative), null, getString(R.string.btn_positive), backPositiveListener);
+        }else{
+            finish();
+        }
+    }
+
+    private DialogInterface.OnClickListener backPositiveListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            finish();
+        }
+    };
+
 
 }

@@ -1,8 +1,6 @@
 package com.example.chen.memo.model;
 
-import android.app.usage.UsageEvents;
 import android.content.ContentValues;
-import android.graphics.DashPathEffect;
 import android.os.Bundle;
 
 import com.example.chen.memo.R;
@@ -14,9 +12,7 @@ import com.example.chen.memo.event.CipherEvent;
 import com.example.chen.memo.event.DiaryEvent;
 import com.example.chen.memo.event.MemoEvent;
 import com.example.chen.memo.view.cipher.CipherActivity;
-import com.example.chen.memo.view.cipher.CipherActivity$$ViewInjector;
 import com.example.chen.memo.view.diary.DiaryDetailActivity;
-import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.memo.MemoActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,7 +27,6 @@ import static com.example.chen.memo.application.CustomApplication.KEY_PWD;
 import static com.example.chen.memo.application.CustomApplication.MEMO_ALARM_TIME;
 import static com.example.chen.memo.application.CustomApplication.MEMO_CONTENT;
 import static com.example.chen.memo.application.CustomApplication.NAME;
-import static com.example.chen.memo.application.CustomApplication.PUBLISH_TIME;
 import static com.example.chen.memo.application.CustomApplication.PWD;
 import static com.example.chen.memo.application.CustomApplication.PWD_ACCOUNT;
 import static com.example.chen.memo.application.CustomApplication.PWD_NAME;
@@ -91,7 +86,7 @@ public class AlterDataModelImpl implements IAlterDataModel {
     * */
 
     public void alterCipher(CipherActivity cipherActivity, Bundle bundle){
-        boolean encrypt = true;
+        boolean isEncrypted = true;
         String msg =cipherActivity.getString(R.string.alter_success);
         ContentValues values = new ContentValues();
         values.put(NAME, bundle.getString(PWD_NAME));
@@ -99,12 +94,12 @@ public class AlterDataModelImpl implements IAlterDataModel {
         try {
             values.put(PWD, SimpleCrypto.enCrypto(bundle.getString(PWD_PWD), KEY_PWD));
         } catch (Exception e) {
-            encrypt = false;
+            isEncrypted = false;
+            msg = "加密失败.建议查杀病毒后重试";
             e.printStackTrace();
         }
 
-        if(encrypt){
-            msg = "加密失败.建议查杀病毒后重试";
+        if(isEncrypted){
             DataSupport.update(CipherBean.class, values, bundle.getInt(ID));
         }
         EventBus.getDefault().post(new CipherEvent("flash cipher list"));

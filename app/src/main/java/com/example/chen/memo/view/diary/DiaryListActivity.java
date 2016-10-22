@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,6 +78,7 @@ public class DiaryListActivity extends BaseActivity implements View.OnClickListe
         toolbar.setTitle(R.string.toolbar_title_diary_list);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         viewListPresenter = new ViewListPresenterImpl();
         viewListPresenter.initData(CustomApplication.DIARY, this);

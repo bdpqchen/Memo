@@ -20,7 +20,7 @@ package="com.example.chen.memo">
         </intent-filter>
     </activity>
 
-    <activity android:name=".view.main.MainActivity"/>
+    <activity android:name=".view.main.MainActivity" />
     <activity android:name=".view.diary.DiaryActivity"/>
     <activity android:name=".view.diary.DiaryListActivity"/>
     <activity android:name=".view.diary.DiaryDetailActivity"/>

@@ -2,6 +2,9 @@ package com.example.chen.memo.view.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +19,9 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.application.CustomApplication;
+import com.example.chen.memo.mydatepicker.DPCManager;
+import com.example.chen.memo.mydatepicker.DPDecor;
+import com.example.chen.memo.mydatepicker.DatePicker2;
 import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.BaseActivity;
@@ -24,6 +30,9 @@ import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -48,9 +57,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+        DatePicker2 picker = (DatePicker2) findViewById(R.id.date_picker);
+        picker.setDate(2016, 10);
+        picker.setDPDecor(new DPDecor() {
+            @Override
+            public void drawDecorBG(Canvas canvas, Rect rect, Paint paint) {
+                paint.setColor(0x88F37B7A);
+                canvas.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2F, paint);
+            }
+        });
+
         WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
         localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-
+//
         //将Activity加入activity管理类
         CustomApplication.addActivity(this);
         setSupportActionBar(toolbar);
