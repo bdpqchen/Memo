@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="jianji"/>
-    <version value="4"/>
+    <version value="5"/>
     <list>
         <mapping class="com.example.chen.memo.bean.Diary"/>
         <mapping class="com.example.chen.memo.bean.Memo"/>
         <mapping class="com.example.chen.memo.bean.CipherBean" />
-        <!--<mapping class="com.example.chen.memo.bean.CipherBean"></mapping>
-        <mapping class="com.example.chen.memo.bean.SettingsBean"></mapping>-->
+        <!--签到表-->
+        <mapping class="com.example.chen.memo.bean.Sign"/>
+        <!--<mapping class="com.example.chen.memo.bean.SettingsBean"></mapping>-->
     </list>
 </litepal>

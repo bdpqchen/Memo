@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.model.AlterDataModelImpl;
@@ -15,8 +14,6 @@ import com.example.chen.memo.service.AlarmReceiver;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.TimeStampUtils;
 import com.example.chen.memo.view.dialog.SimpleDialog;
-import com.example.chen.memo.view.diary.DiaryListActivity;
-import com.example.chen.memo.view.memo.AlarmActivity;
 import com.example.chen.memo.view.memo.MemoActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;

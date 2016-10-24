@@ -1,6 +1,7 @@
 package com.example.chen.memo.view.memo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
@@ -16,6 +17,7 @@ import com.example.chen.memo.presenter.MemoPresenterImpl;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.TimeStampUtils;
 import com.example.chen.memo.view.BaseActivity;
+import com.example.chen.memo.view.dialog.SimpleDialog;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -47,7 +49,7 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
     private Context mContext;
     private MemoPresenterImpl memoPresenterImpl;
     private long alarmTimeStamp = 0;
-    private int  existAlarmTimeStamp = 0;
+    private int existAlarmTimeStamp = 0;
     private Bundle bundle;
     private int id = -1;
     private boolean isFirstChecked = true;
@@ -68,17 +70,17 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
         switchAlarm.setText(TimeStampUtils.getDatetimeString(new Date().getTime()));
 
         bundle = getIntent().getExtras();
-        if(bundle != null){
+        if (bundle != null) {
             String s = bundle.getString(MEMO_CONTENT);
             editTextMemo.setText(s);
             int sLength = 0;
-            if(s != null){
+            if (s != null) {
                 sLength = s.length();
             }
             editTextMemo.setSelection(sLength);
             id = bundle.getInt(ID);
             existAlarmTimeStamp = bundle.getInt(MEMO_ALARM_TIME);
-            if(existAlarmTimeStamp > 0) {
+            if (existAlarmTimeStamp > 0) {
                 switchAlarm.setText(TimeStampUtils.getDatetimeString(Long.parseLong(existAlarmTimeStamp + "0000")));
                 switchAlarm.setTextColor(Color.GREEN);
                 switchAlarm.setChecked(true);
@@ -89,7 +91,7 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu ) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_create_data, menu);
         return true;
     }
@@ -97,17 +99,17 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-        if(isChecked){
-            if(!isFirstChecked){
+        if (isChecked) {
+            if (!isFirstChecked) {
                 memoPresenterImpl.addAlarm(this, mContext);
             }
-        }else{
+        } else {
             switchAlarm.setTextColor(Color.GRAY);
             LogUtils.v("compoundButton is not checked");
         }
     }
 
-    public boolean getCheckBoxStatus(){
+    public boolean getCheckBoxStatus() {
         return switchAlarm.isChecked();
     }
 
@@ -119,11 +121,11 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
                 break;
             case R.id.menu_done:
                 String s = String.valueOf(editTextMemo.getText());
-                if(!s.equals("")){
-                    if(bundle == null){
+                if (!s.equals("")) {
+                    if (bundle == null) {
                         //创建一条新记录
                         memoPresenterImpl.createMemo(this, String.valueOf(editTextMemo.getText()), alarmTimeStamp);
-                    }else{
+                    } else {
                         //更新一条记录
                         // 并删除该记录可能包含的闹钟
                         Bundle alterBundle = new Bundle();
@@ -133,7 +135,7 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
                         alterBundle.putInt(ID, id);
                         memoPresenterImpl.alterMemoDialog(this, alterBundle);
                     }
-                }else{
+                } else {
                     onToastMessage(getString(R.string.not_finish_memo));
                 }
                 break;
@@ -143,7 +145,7 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
     }
 
 
-    public void onSetDatetimeSuccess(long timeStamp){
+    public void onSetDatetimeSuccess(long timeStamp) {
         switchAlarm.setTextColor(Color.GREEN);
         switchAlarm.setText(TimeStampUtils.getDatetimeString(timeStamp));
         alarmTimeStamp = timeStamp;
@@ -158,20 +160,46 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
 
     }
 
-    public void onToastMessage(String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    public void onToastMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         memoPresenterImpl.onDateSet(view, year, monthOfYear, dayOfMonth);
     }
+
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         memoPresenterImpl.onTimeSet(view, hourOfDay, minute, second);
     }
-    public void onCancel(){
+
+    public void onCancel() {
         switchAlarm.setTextColor(Color.GRAY);
         switchAlarm.setChecked(false);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (editTextMemo.getText().length() > 0 && bundle == null) {
+            alertDialog();
+        } else if (bundle != null && bundle.getString(MEMO_CONTENT).length() < editTextMemo.getText().length()){
+            alertDialog();
+        }else{
+            finish();
+        }
+    }
+
+    private void alertDialog(){
+        SimpleDialog simpleDialog = new SimpleDialog(this);
+        simpleDialog.createDialog(getString(R.string.warn), getString(R.string.sure_do_not_save_data), getString(R.string.btn_negative), null, getString(R.string.btn_positive), backPositiveListener);
+    }
+
+    private DialogInterface.OnClickListener backPositiveListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            finish();
+        }
+    };
+
 }

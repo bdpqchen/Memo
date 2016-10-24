@@ -1,9 +1,7 @@
 package com.example.chen.memo.model;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
-import android.view.View;
 
 import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.bean.CipherBean;

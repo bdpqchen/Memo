@@ -86,20 +86,7 @@ public class DatePicker2 extends LinearLayout {
         tvMonth.setText("六月");
         tvMonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         tvMonth.setTextColor(mTManager.colorTitle());
-/*
-        // 确定显示
-        tvEnsure = new TextView(context);
-        tvEnsure.setText(mLManager.titleEnsure());
-        tvEnsure.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-        tvEnsure.setTextColor(mTManager.colorTitle());
-        tvEnsure.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != onDateSelectedListener) {
-                    onDateSelectedListener.onDateSelected(monthView.getDateSelected());
-                }
-            }
-        });*/
+
 
         rlTitle.addView(tvYear, lpYear);
         rlTitle.addView(tvMonth, lpMonth);
@@ -145,34 +132,21 @@ public class DatePicker2 extends LinearLayout {
         monthView.setOnDateScrollChangeListener(new MonthView.OnDateScrollChangeListener() {
             @Override
             public void scrollLeft(int year, int month) {
-                String str = "向左滑动=="+"年份="+year+"--月份=="+month;
                 //Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
-
-                List<String> tmp = new ArrayList<>();
-                tmp.add("2016-9-1");
-                tmp.add("2016-9-8");
-                tmp.add("2016-9-16");
-                tmp.add("2016-9-17");
-                tmp.add("2016-9-18");
-                DPCManager.getInstance().setDecorBG(tmp);
-
             }
 
             @Override
             public void scrollRight(int year, int month) {
-                String str = "向右滑动=="+"年份="+year+"--月份=="+month;
                 //Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void scrollTop(int year, int month) {
-                String str = "向上滑动=="+"年份="+year+"--月份=="+month;
                 //Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void scrollBottom(int year, int month) {
-                String str = "向下滑动=="+"年份="+year+"--月份=="+month;
                 //Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
             }
         });

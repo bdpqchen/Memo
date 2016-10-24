@@ -10,25 +10,17 @@ import com.example.chen.memo.bean.Memo;
 import com.example.chen.memo.event.CipherEvent;
 import com.example.chen.memo.event.DiaryEvent;
 import com.example.chen.memo.event.MemoEvent;
-import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.view.cipher.CipherActivity;
 import com.example.chen.memo.view.diary.DiaryActivity;
 import com.example.chen.memo.view.memo.MemoActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.security.InvalidKeyException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 import static com.example.chen.memo.application.CustomApplication.CREATE;
 import static com.example.chen.memo.application.CustomApplication.EDIT_TEXT_DIARY;
-import static com.example.chen.memo.application.CustomApplication.EDIT_TEXT_MEMO;
 import static com.example.chen.memo.application.CustomApplication.KEY_PWD;
 import static com.example.chen.memo.application.CustomApplication.MEMO_ALARM_TIME;
 import static com.example.chen.memo.application.CustomApplication.MEMO_CONTENT;

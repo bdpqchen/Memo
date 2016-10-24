@@ -4,18 +4,13 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">设置</string>
-    <string name="action_aboutme">关于我</string>
-    <string name="write_diary">日记本</string>
-    <string name="view_diary">日记本</string>
     <string name="write_memo">备忘录</string>
     <string name="view_memo">备忘录</string>
     <string name="view_cipher">密码本</string>
-    <string name="settings_lock">功能加锁</string>
     <string name="settings_lock_diary">日记本加锁</string>
     <string name="settings_lock_memo">备忘录加锁</string>
     <string name="settings_lock_cipher">密码本加锁</string>
-    <string name="password_alter">修改唯一密码</string>
-    <string name="back">〈返回</string>
+    <string name="password_alter">修改密码</string>
     <string name="btn_negative">取消</string>
     <string name="btn_positive">确定</string>
     <string name="hint_input_again">再输入一次</string>
@@ -70,7 +65,9 @@
     <string name="find_back_pwd_success">找回密码失败</string>
     <string name="verify_success">验证成功</string>
     <string name="sure_do_not_save_data">确定不保存所写的内容吗？</string>
-
+    <string name="toolbar_settings">设置</string>
+    <string name="write_diary">日记本</string>
+    <string name="tips_write_data">还没有数据,快去写一条吧</string>
 
 
 </resources>

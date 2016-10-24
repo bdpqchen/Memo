@@ -75,10 +75,6 @@ public class CipherPresenterImpl {
         }
     };
 
-    private void notIsNullError(){
-        cipherActivity.nameGetError(cipherActivity.getString(R.string.not_is_null));
-    }
-
     public void deleteCipher(CipherListActivity cipherListActivity, Bundle bundle) {
 
         this.cipherListActivity = cipherListActivity;

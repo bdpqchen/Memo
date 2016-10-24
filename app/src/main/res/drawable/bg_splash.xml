@@ -5,6 +5,7 @@
     <item>
         <bitmap
             android:gravity="center_vertical|center_horizontal"
-            android:src="@mipmap/jianji_logo"/>
+            android:src="@mipmap/splash5"
+            />
     </item>
 </layer-list>

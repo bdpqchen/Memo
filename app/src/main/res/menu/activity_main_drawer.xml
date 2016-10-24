@@ -3,11 +3,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/diary"
-            android:icon="@android:drawable/ic_menu_edit"
+            android:icon="@drawable/ic_create_black_24dp"
             android:title="@string/write_diary" />
         <item
             android:id="@+id/memo"
-            android:icon="@android:drawable/ic_menu_edit"
+            android:icon="@drawable/ic_list_black_24dp"
             android:title="@string/write_memo" />
         <item
             android:id="@+id/cipher"
@@ -15,7 +15,7 @@
             android:title="@string/view_cipher" />
         <item
             android:id="@+id/dump"
-            android:icon="@android:drawable/ic_menu_delete"
+            android:icon="@drawable/ic_delete_black_24dp"
             android:title="@string/view_dump" />
     </group>
 
@@ -23,12 +23,8 @@
         <menu>
             <item
                 android:id="@+id/settings"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_build_black_24dp"
                 android:title="@string/action_settings" />
-            <!--<item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="" />-->
         </menu>
     </item>
 </menu>

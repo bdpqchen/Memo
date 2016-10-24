@@ -6,19 +6,20 @@ import android.preference.PreferenceManager;
 
 import com.example.chen.memo.application.CustomApplication;
 
-import java.net.UnknownHostException;
+import static com.example.chen.memo.application.CustomApplication.KEY_UNIQUE_PASSWORD;
 
 /**
  * Created by cdc on 16-9-21.
  */
 public class PrefUtils {
     private static final String FIRST_OPEN = "first_open";
-    private static final String UNIQUE_PWD = "unique_pwd";
+    private static final String UNIQUE_PWD = KEY_UNIQUE_PASSWORD;
     private static final String DIARY_LOCK = "diary_lock";
     private static final String MEMO_LOCK = "memo_lock";
     private static final String CIPHER_LOCK = "cipher_lock";
     private static final String ERROR_PWD_COUNT = "error_pwd_count";
     private static final String IMITATE_DATA = "imitation_data";
+    private static final String SIGN_COUNT = "sing_count";
 
 
     /*
@@ -79,5 +80,12 @@ public class PrefUtils {
         return getDefaultsharedPreferences().getBoolean(IMITATE_DATA, false);
     }
 
+    public static void setSignInCount(int count){
+        getDefaultsharedPreferences().edit().putInt(SIGN_COUNT, count).apply();
+    }
+
+    public static int getSignInCount(){
+        return getDefaultsharedPreferences().getInt(SIGN_COUNT, 0);
+    }
 
 }

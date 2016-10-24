@@ -13,8 +13,13 @@ import com.example.chen.memo.SimpleCrypto;
 import com.example.chen.memo.model.ValidateModelImpl;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.PrefUtils;
+import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
+import com.example.chen.memo.view.diary.DiaryListActivity;
+import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.main.MainActivity;
+import com.example.chen.memo.view.memo.MemoListActivity;
+import com.example.chen.memo.view.settings.SettingsActivity;
 
 import java.util.ArrayList;
 
@@ -40,10 +45,10 @@ public class ValidatePresenterImpl implements IValidatePresenter {
     @Override
     public void login(MainActivity view, NextActivity nextActivity) {
         this.view = view;
+        this.nextActivity = nextActivity;
         //判断密码错误次数  >=7 提示找回密码
         if (PrefUtils.getErrorPwdCount() < maxErrorPwdTime) {
             LogUtils.i("getErrorCount ", String.valueOf(PrefUtils.getErrorPwdCount()));
-            this.nextActivity = nextActivity;
             validateModel.checkLogin(view, this);
         } else {
             /*找回密码*/
@@ -177,14 +182,33 @@ public class ValidatePresenterImpl implements IValidatePresenter {
 
     @Override
     public void loginSuccess() {
-        Intent intent = new Intent(view, nextActivity.getClass());
-        view.startActivity(intent);
+        Intent intent = new Intent();
+        switch (nextActivity){
+            case DiaryList:
+                intent.setClass(view, DiaryListActivity.class);
+                break;
+            case MemoList:
+                intent.setClass(view, MemoListActivity.class);
+                break;
+            case CipherList:
+                intent.setClass(view, CipherListActivity.class);
+                break;
+            case DumpList:
+                intent.setClass(view, DumpListActivity.class);
+                break;
+            case Settings:
+                intent.setClass(view, SettingsActivity.class);
+                break;
+        }
+
+        view.startViewActivity(intent);
     }
 
     @Override
     public void setup(final MainActivity view, NextActivity nextActivity) {
+
         if (!PrefUtils.isFirstOpen()) {
-            login(view, NextActivity.Settings);
+            login(view, nextActivity);
         } else {
             //当第一次点击设置，提示设置唯一密码方可进入
             validateModel.setupPassword(view, this);

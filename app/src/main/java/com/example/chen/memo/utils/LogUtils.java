@@ -7,7 +7,7 @@ import android.util.Log;
  * Created by cdc on 16-9-21.
  */
 public class LogUtils {
-    public static final int VERBOSE = 1;
+    public static final int VERBOSE = 7;
     public static final int DEBUG = 2;
     public static final int INFO = 3;
     public static final int WARN = 4;

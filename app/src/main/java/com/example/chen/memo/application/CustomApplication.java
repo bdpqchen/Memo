@@ -1,7 +1,6 @@
 package com.example.chen.memo.application;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
 import org.litepal.LitePalApplication;

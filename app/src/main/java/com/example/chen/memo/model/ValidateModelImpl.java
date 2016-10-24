@@ -11,13 +11,11 @@ import com.example.chen.memo.R;
 import com.example.chen.memo.SimpleCrypto;
 import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.bean.Diary;
-import com.example.chen.memo.bean.Imitation;
 import com.example.chen.memo.bean.Memo;
 import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.main.MainActivity;
-import com.example.chen.memo.view.memo.MemoListActivity;
 
 import org.litepal.crud.DataSupport;
 
@@ -69,8 +67,8 @@ public class ValidateModelImpl implements IValidateModel {
             LogUtils.i("dialogPwd.gettext()", input_pwd);
             //隐藏输入法
             try {
-                LogUtils.i("input", input_pwd);
                 String pwd = SimpleCrypto.enCrypto(input_pwd, KEY_UNIQUE_PASSWORD);
+                LogUtils.i("input", input_pwd);
                 LogUtils.i("pwd_former", SimpleCrypto.deCrypto(pwd, KEY_UNIQUE_PASSWORD));
                 LogUtils.i("pwd", pwd);
                 LogUtils.i("preference_former", SimpleCrypto.deCrypto(unique_pwd, KEY_UNIQUE_PASSWORD));
@@ -81,26 +79,23 @@ public class ValidateModelImpl implements IValidateModel {
                     view.hideKeyboard();
                     //清空错误密码统计
                     PrefUtils.setErrorPwdCount(0);
-                    Toast.makeText(view, "密码验证成功", Toast.LENGTH_SHORT).show();
                     validatePresenter.loginSuccess();
-                    LogUtils.v("密码验证成功");
                 } else {
                     //密码错误次数累加器
                     int i = PrefUtils.getErrorPwdCount();
                     PrefUtils.setErrorPwdCount(i+1);
                     if (i < ValidatePresenterImpl.maxErrorPwdTime) {
                         Toast.makeText(view, R.string.error_pwd_text, Toast.LENGTH_SHORT).show();
-                        //dialog;
                     } else {
                         //dialog.dismiss();//找回密码提示框*
                         validatePresenter.findBackPwdDialog();
-
-                        Toast.makeText(view, "找回密码", Toast.LENGTH_SHORT).show();
                     }
                 }
             } catch (Exception e) {
+                Toast.makeText(view, R.string.error_pwd_text, Toast.LENGTH_SHORT).show();
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+
             }
 
         }
@@ -214,7 +209,6 @@ public class ValidateModelImpl implements IValidateModel {
         arr.add("无论是走路吃饭喝咖啡都在上网的普通人，还是高度需要社交网络刷存在感的网红，网络瘫痪简直比末日还可怕！");
         arr.add("我是暂时还不清楚到底是谁干的，但是感觉他一定来头很大！要我说就是中国和俄罗斯！");
         arr.add("可是他们的钱太少了，少得只够维持最基本的日常生活开支。");
-        //arr.size();
 
         ArrayList<String> realList = new ArrayList<>(10);
         int l = 0;
@@ -250,6 +244,11 @@ public class ValidateModelImpl implements IValidateModel {
         if(total > 0){
             s = memoList.get(getRandom(1, total)).getMemo();
         }
+
+        if(s.length() > 30 ) {
+            s = s.substring(0,30);
+        }
+
         return s;
     }
 
@@ -259,6 +258,10 @@ public class ValidateModelImpl implements IValidateModel {
         int total = diaryList.size();
         if(total > 0){
             s = diaryList.get(getRandom(1, total)).getDiary();
+
+        }
+        if(s.length() > 30 ) {
+            s = s.substring(0,30);
         }
         return s;
     }

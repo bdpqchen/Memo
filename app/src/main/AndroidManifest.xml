@@ -30,6 +30,7 @@ package="com.example.chen.memo">
     <activity android:name=".view.cipher.CipherListActivity"/>
     <activity android:name=".view.cipher.CipherActivity"/>
     <activity android:name=".view.dump.DumpListActivity"/>
+    <activity android:name=".view.settings.SettingsActivity"/>
 
 
 

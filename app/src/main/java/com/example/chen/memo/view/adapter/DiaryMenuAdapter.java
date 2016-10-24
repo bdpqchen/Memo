@@ -39,7 +39,6 @@ import static com.example.chen.memo.application.CustomApplication.DIARY_CONTENT;
 import static com.example.chen.memo.application.CustomApplication.ID;
 import static com.example.chen.memo.application.CustomApplication.POSITION;
 import static com.example.chen.memo.application.CustomApplication.PUBLISH_TIME;
-import static com.example.chen.memo.application.CustomApplication.RECORD_LIST_LIMIT;
 
 /**
  * Created by YOLANDA on 2016/7/22.

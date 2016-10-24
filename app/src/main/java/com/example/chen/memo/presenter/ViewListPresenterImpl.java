@@ -1,8 +1,6 @@
 package com.example.chen.memo.presenter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.View;
 
 import com.example.chen.memo.application.CustomApplication;
 import com.example.chen.memo.model.ViewListModelImpl;
@@ -11,7 +9,6 @@ import com.example.chen.memo.view.common.NextActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
-import com.yanzhenjie.recyclerview.swipe.OnSwipeMenuItemClickListener;
 
 import static com.example.chen.memo.application.CustomApplication.CIPHER;
 import static com.example.chen.memo.application.CustomApplication.DIARY;

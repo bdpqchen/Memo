@@ -23,6 +23,8 @@
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <style name="counterText">
@@ -33,4 +35,11 @@
     <style name="counterOverride">
         <item name="android:textColor">#ff0000</item>
     </style>
+
+    <style name="menugreen">
+        <item name="fab_colorNormal">#43A047</item>
+        <item name="fab_colorPressed">#2E7D32</item>
+        <item name="fab_colorRipple">#1B5E20</item>
+    </style>
+
 </resources>

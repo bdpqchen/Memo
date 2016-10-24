@@ -10,14 +10,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.Vibrator;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.view.BaseActivity;
-import com.example.chen.memo.view.dialog.SimpleDialog;
 
 /**
  * Created by cdc on 16-10-16.

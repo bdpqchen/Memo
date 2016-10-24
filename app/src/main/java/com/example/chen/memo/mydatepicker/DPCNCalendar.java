@@ -111,7 +111,7 @@ public class DPCNCalendar extends DPCalendar {
     public Set<String> buildMonthHoliday(int year, int month) {
         Set<String> tmp = new HashSet<>();
         if (year == 2015) {
-            Collections.addAll(tmp, HOLIDAY[month - 1]);
+            //Collections.addAll(tmp, HOLIDAY[month - 1]);
         }
         return tmp;
     }
@@ -176,12 +176,12 @@ public class DPCNCalendar extends DPCalendar {
      * @return ...
      */
     public boolean isDeferred(int year, int month, int day) {
-        if (year == 2015) {
+       /* if (year == 2015) {
             String[] deferredOfMonth = DEFERRED[month - 1];
             for (String s : deferredOfMonth) {
                 if (!TextUtils.isEmpty(s) && Integer.valueOf(s) == day) return true;
             }
-        }
+        }*/
         return false;
     }
 

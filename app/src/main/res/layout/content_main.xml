@@ -34,11 +34,10 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_sign_in_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/text0"
-            android:text="12"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp"
             tools:ignore="RtlHardcoded" />
@@ -48,10 +47,10 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView2"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_toEndOf="@+id/textView2"
-            android:layout_toRightOf="@+id/textView2"
+            android:layout_alignBaseline="@+id/tv_sign_in_count"
+            android:layout_alignBottom="@+id/tv_sign_in_count"
+            android:layout_toEndOf="@+id/tv_sign_in_count"
+            android:layout_toRightOf="@+id/tv_sign_in_count"
             android:text="天"
             android:textSize="20sp" />
 

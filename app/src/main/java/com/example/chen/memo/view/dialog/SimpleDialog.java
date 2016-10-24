@@ -2,7 +2,6 @@ package com.example.chen.memo.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import com.example.chen.memo.R;
