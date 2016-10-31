@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -56,7 +57,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        //4.4系统会顶出状态栏
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
+
         ButterKnife.inject(this);
 
         DatePicker2 picker = (DatePicker2) findViewById(R.id.date_picker);
@@ -78,8 +87,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         TextView tvSignInCount = (TextView) findViewById(R.id.tv_sign_in_count);
         tvSignInCount.setText(PrefUtils.getSignInCount() + "");
 
-        WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-        localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
 
         //将Activity加入activity管理类
         CustomApplication.addActivity(this);

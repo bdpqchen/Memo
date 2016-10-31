@@ -45,7 +45,7 @@ public class AlarmActivity extends BaseActivity {
         alarmMusic.setLooping(true);
         alarmMusic.start();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        long[] pattern = {2000, 2000, 2000, 2000};   // 停止 开启 停止 开启
+        long[] pattern = {4000, 1000, 4000, 1000};   // 停止 开启 停止 开启
         vibrator.vibrate(pattern, 2);           //重复两次上面的pattern 如果只想震动一次，index设为-1
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

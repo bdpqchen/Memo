@@ -5,7 +5,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.model.AlterDataModelImpl;
@@ -157,12 +159,21 @@ public class MemoPresenterImpl  implements IMemoPresenter,
     };
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void createAlarm(long alarmTimeStamp, int intAlarmStamp, String memoContent){
         AlarmManager alarmManager = (AlarmManager) memoActivity.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context.getApplicationContext(), AlarmReceiver.class);
         intent.putExtra(MSG, memoContent);
         PendingIntent pi = PendingIntent.getBroadcast(context.getApplicationContext(), intAlarmStamp, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTimeStamp, pi);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTimeStamp, pi);
+            }else{
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmTimeStamp, pi);
+            }
+        }else{
+            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTimeStamp, pi);
+        }
     }
 
     private void setDate(int y, int m, int d) {
