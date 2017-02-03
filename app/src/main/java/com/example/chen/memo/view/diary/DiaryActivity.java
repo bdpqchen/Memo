@@ -31,12 +31,20 @@ public class DiaryActivity extends BaseActivity{
     private Bundle bundle = new Bundle();
     private DiaryPresenterImpl diaryPresenterImpl;
 
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_diary;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_title_create_diary);
+        return toolbar;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diary);
         ButterKnife.inject(this);
-        toolbar.setTitle(R.string.toolbar_title_create_diary);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         diaryPresenterImpl = new DiaryPresenterImpl(this);
     }
@@ -49,7 +57,6 @@ public class DiaryActivity extends BaseActivity{
                 break;
             case R.id.menu_done:
                 bundle.putString(EDIT_TEXT_DIARY, String.valueOf(editTextDiary.getText()));
-                //bundle.putString(NOW_TIME, String.valueOf(nowTime.getText()));
                 diaryPresenterImpl.createDiary(bundle);
                 break;
 

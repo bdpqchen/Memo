@@ -45,16 +45,21 @@ public class CipherActivity extends BaseActivity implements View.OnClickListener
 
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_cipher;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_title_create_cipher);
+        return toolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
         mContext = getApplicationContext();
-
-        setContentView(R.layout.activity_cipher);
-        ButterKnife.inject(this);
-        toolbar.setTitle(R.string.toolbar_title_create_cipher);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         fabFinish.setOnClickListener(this);
         cipherPresenterImpl = new CipherPresenterImpl();
 

@@ -1,39 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.example.chen.memo.view.main.MainActivity"
-    >
+    tools:context="com.example.chen.memo.view.main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@color/colorPrimary"
         >
 
-        <android.support.v7.widget.Toolbar
+        <include
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            />
+            layout="@layout/app_toolbar" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:id="@+id/fab"
-        android:src="@drawable/ic_add_white_24dp"
-
-        />
-
     <include layout="@layout/content_main" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/white_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.89"
+            android:clickable="true"
+            android:background="@color/color_white_item"
+            android:visibility="invisible" />
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            app:fab_addButtonColorNormal="@color/colorPrimary"
+            app:fab_addButtonColorPressed="@color/colorPrimaryDark"
+            app:fab_labelStyle="@style/menu_labels_style"
+            fab:fab_addButtonSize="normal">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_diary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_black_24dp"
+                fab:fab_colorNormal="#4388fc"
+                fab:fab_colorPressed="#1b66e5"
+                fab:fab_size="mini"
+                fab:fab_title="@string/toolbar_title_create_diary" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_memo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_list_black_24dp"
+                fab:fab_colorNormal="#e8568c"
+                fab:fab_colorPressed="#d52e6c"
+                fab:fab_size="mini"
+                fab:fab_title="@string/toolbar_title_create_memo" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_cipher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_lock_black_24dp"
+                fab:fab_colorNormal="#fbc02d"
+                fab:fab_colorPressed="#e9ae19"
+                fab:fab_size="mini"
+                fab:fab_title="@string/view_cipher" />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </RelativeLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

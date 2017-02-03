@@ -32,7 +32,7 @@ import static com.example.chen.memo.application.CustomApplication.ID;
 public class DiaryDetailActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.toolbar)
-    Toolbar toolbar;
+    Toolbar mToolbar;
     @InjectView(R.id.diary_content)
     EditText etDiaryContent;
 
@@ -46,13 +46,20 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
 
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_diary_detail;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        mToolbar.setTitle(R.string.toolbar_title_view_diary);
+
+        return mToolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diary_detail);
-        ButterKnife.inject(this);
-
-        toolbar.setTitle(R.string.toolbar_title_view_diary);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         diaryPresenter = new DiaryPresenterImpl(this);
 

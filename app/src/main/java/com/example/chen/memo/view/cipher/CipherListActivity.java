@@ -66,17 +66,22 @@ public class CipherListActivity extends BaseActivity implements View.OnClickList
     private int dataCount;
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_cipher_list;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_title_cihper_list);
+        return toolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
-        setContentView(R.layout.activity_cipher_list);
-        ButterKnife.inject(this);
         mContext = this;
         EventBus.getDefault().register(this);
-
-        toolbar.setTitle(R.string.toolbar_title_cihper_list);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         viewListPresenter = new ViewListPresenterImpl();
         viewListPresenter.initData(CustomApplication.CIPHER, this);
         linearLayoutManager = new LinearLayoutManager(this);

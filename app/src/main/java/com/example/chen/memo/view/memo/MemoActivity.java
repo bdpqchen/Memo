@@ -55,14 +55,20 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
     private boolean isFirstChecked = true;
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_memo;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_title_create_memo);
+        return toolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
         mContext = getApplicationContext();
-
-        setContentView(R.layout.activity_memo);
-        ButterKnife.inject(this);
-        toolbar.setTitle(R.string.toolbar_title_create_memo);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         switchAlarm.setOnCheckedChangeListener(this);

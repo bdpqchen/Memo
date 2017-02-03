@@ -49,15 +49,21 @@ public class DumpListActivity extends BaseActivity implements View.OnClickListen
     private DumpPresenterImpl dumpPresenter;
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_recycled_list;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_title_recycled_list);
+        return toolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
-        setContentView(R.layout.activity_recycled_list);
-        ButterKnife.inject(this);
         mContext = this;
         this.dumpPresenter = new DumpPresenterImpl();
-
-        toolbar.setTitle(R.string.toolbar_title_recycled_list);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //加载数据

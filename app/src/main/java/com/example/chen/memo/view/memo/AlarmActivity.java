@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,7 +22,7 @@ import com.example.chen.memo.view.BaseActivity;
  * Created by cdc on 16-10-16.
  */
 
-public class AlarmActivity extends BaseActivity {
+public class AlarmActivity extends AppCompatActivity {
     MediaPlayer alarmMusic;
     private Vibrator vibrator;
     private PowerManager.WakeLock mWakelock;

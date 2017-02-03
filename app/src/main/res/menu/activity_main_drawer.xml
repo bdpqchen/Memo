@@ -11,7 +11,7 @@
             android:title="@string/write_memo" />
         <item
             android:id="@+id/cipher"
-            android:icon="@android:drawable/ic_lock_lock"
+            android:icon="@drawable/ic_lock_black_24dp"
             android:title="@string/view_cipher" />
         <item
             android:id="@+id/dump"

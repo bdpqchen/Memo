@@ -39,7 +39,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 import static com.example.chen.memo.application.CustomApplication.RECORD_LIST_LIMIT;
@@ -66,18 +65,22 @@ public class DiaryListActivity extends BaseActivity implements View.OnClickListe
     private Activity mContext;
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_diary_list;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_title_diary_list);
+        return toolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_diary_list);
-        ButterKnife.inject(this);
         EventBus.getDefault().register(this);
-
-        toolbar.setTitle(R.string.toolbar_title_diary_list);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         viewListPresenter = new ViewListPresenterImpl();
         viewListPresenter.initData(CustomApplication.DIARY, this);
         linearLayoutManager = new LinearLayoutManager(this);

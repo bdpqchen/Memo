@@ -15,4 +15,5 @@
     <dimen name="txt_padding_middle">5dp</dimen>
     <dimen name="item_height">60dp</dimen>
     <dimen name="item_margin">10dp</dimen>
+    <dimen name="toolbar_padding_top">0dp</dimen>
 </resources>

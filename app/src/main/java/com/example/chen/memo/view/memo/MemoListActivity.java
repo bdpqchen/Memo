@@ -68,17 +68,22 @@ public class MemoListActivity extends BaseActivity implements View.OnClickListen
     private int dataCount;
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_memo_list;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_title_memo_list);
+        return toolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
-        setContentView(R.layout.activity_memo_list);
-        ButterKnife.inject(this);
         mContext = this;
         EventBus.getDefault().register(this);
-
-        toolbar.setTitle(R.string.toolbar_title_memo_list);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         viewListPresenter = new ViewListPresenterImpl();
         viewListPresenter.initData(CustomApplication.MEMO, this);
         linearLayoutManager = new LinearLayoutManager(this);

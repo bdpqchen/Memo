@@ -44,21 +44,24 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     RelativeLayout alterPwd;
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_settings;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        toolbar.setTitle(R.string.toolbar_settings);
+        return toolbar;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        ButterKnife.inject(this);
-
-        toolbar.setTitle(R.string.toolbar_settings);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         alterPwd.setOnClickListener(this);
-
         switchDiaryLock.setChecked(PrefUtils.isDiaryLock());
         switchMemoLock.setChecked(PrefUtils.isMemoLock());
         switchCipherLock.setChecked(PrefUtils.isCipherLock());
-
         switchDiaryLock.setOnCheckedChangeListener(this);
         switchMemoLock.setOnCheckedChangeListener(this);
         switchCipherLock.setOnCheckedChangeListener(this);

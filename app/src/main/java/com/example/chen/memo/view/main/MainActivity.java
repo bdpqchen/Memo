@@ -8,7 +8,6 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +15,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
@@ -27,48 +25,81 @@ import com.example.chen.memo.mydatepicker.DatePicker2;
 import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.BaseActivity;
+import com.example.chen.memo.view.cipher.CipherActivity;
 import com.example.chen.memo.view.cipher.CipherListActivity;
 import com.example.chen.memo.view.common.NextActivity;
+import com.example.chen.memo.view.diary.DiaryActivity;
 import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
 import com.example.chen.memo.view.update.SearchUpdate;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /*
  * Created by cdc on 16-9-23.
 */
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity, View.OnClickListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, IMainActivity {
 
     @InjectView(R.id.toolbar)
-    Toolbar toolbar;
-    @InjectView(R.id.fab)
-    FloatingActionButton fab;
+    Toolbar mToolbar;
+    @InjectView(R.id.fam)
+    FloatingActionsMenu actionsMenu;
+    @InjectView(R.id.action_diary)
+    FloatingActionButton actionButtonDiary;
+    @InjectView(R.id.action_memo)
+    FloatingActionButton actionButtonMemo;
+    @InjectView(R.id.action_cipher)
+    FloatingActionButton actionButtonCipher;
     @InjectView(R.id.nav_view)
     NavigationView navView;
     @InjectView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
+    @InjectView(R.id.white_view)
+    View whiteView;
 
+
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected Toolbar getToolbar() {
+        mToolbar.setTitle(R.string.app_name);
+        return mToolbar;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
-
-        /*//4.4系统会顶出状态栏
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        //对于DrawerLayout的沉浸式状态栏,5.0以下问题明显
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
+            //将侧边栏顶部延伸至status bar
+            drawerLayout.setFitsSystemWindows(true);
+            //将主页面顶部延伸至status bar;虽默认为false,但经测试,DrawerLayout需显示设置
+            drawerLayout.setClipToPadding(false);
         }
-*/
-        ButterKnife.inject(this);
+
+        actionsMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                whiteView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                whiteView.setVisibility(View.INVISIBLE);
+            }
+        });
+
 
         DatePicker2 picker = (DatePicker2) findViewById(R.id.date_picker);
 
@@ -92,13 +123,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //将Activity加入activity管理类
         CustomApplication.addActivity(this);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
 
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
         navView.setNavigationItemSelectedListener(this);
-        fab.setOnClickListener(this);
+//        fab.setOnClickListener(this);
 
         checkUpdate(2000);
     }
@@ -170,14 +201,30 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         startActivity(intent);
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id){
-            case R.id.fab:
-                Intent intent = new Intent(this, MemoActivity.class);
+    @OnClick({R.id.action_diary, R.id.action_memo, R.id.action_cipher, R.id.white_view})
+    void onMenuClick(View v){
+        Intent intent;
+        switch(v.getId()){
+
+            case R.id.action_diary:
+                intent = new Intent(this, DiaryActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.action_memo:
+                intent = new Intent(this, MemoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.action_cipher:
+                intent = new Intent(this, CipherActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.white_view:
+                whiteView.setVisibility(View.INVISIBLE);
+                break;
         }
+        actionsMenu.collapse();
+
+
     }
+
 }
