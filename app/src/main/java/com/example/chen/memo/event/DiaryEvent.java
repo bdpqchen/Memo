@@ -1,7 +1,5 @@
 package com.example.chen.memo.event;
 
-import org.greenrobot.eventbus.EventBus;
-
 /**
  * Created by cdc on 16-9-28.
  */

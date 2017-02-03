@@ -2,7 +2,6 @@ package com.example.chen.memo.mydatepicker;
 
 import android.text.TextUtils;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;

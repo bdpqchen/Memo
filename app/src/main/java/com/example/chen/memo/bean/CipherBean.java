@@ -1,7 +1,5 @@
 package com.example.chen.memo.bean;
 
-import android.provider.ContactsContract;
-
 import org.litepal.crud.DataSupport;
 
 /**

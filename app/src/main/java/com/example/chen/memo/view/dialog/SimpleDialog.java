@@ -4,8 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
-import com.example.chen.memo.R;
-
 /**
  * Created by cdc on 16-10-11.
  */

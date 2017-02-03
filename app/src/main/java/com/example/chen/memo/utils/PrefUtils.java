@@ -20,6 +20,8 @@ public class PrefUtils {
     private static final String ERROR_PWD_COUNT = "error_pwd_count";
     private static final String IMITATE_DATA = "imitation_data";
     private static final String SIGN_COUNT = "sing_count";
+    private static final String INIT_FIRST_OPEN = "init_first_open";
+    private static final String INIT_VERSION_CODE = "init_version_code";
 
 
     /*
@@ -27,65 +29,82 @@ public class PrefUtils {
         * getSettingsSharedPreferences() 获取配置文件
         *
         * */
-    private static SharedPreferences getDefaultsharedPreferences(){
+    private static SharedPreferences getDefaultSharedPreferences(){
         return PreferenceManager.getDefaultSharedPreferences(CustomApplication.getContext());
     }
 
     public static void setFirstOpen(boolean firstOpen){
-        getDefaultsharedPreferences().edit().putBoolean(FIRST_OPEN, firstOpen).apply();
+        getDefaultSharedPreferences().edit().putBoolean(FIRST_OPEN, firstOpen).apply();
     }
     public static boolean isFirstOpen(){
-        return getDefaultsharedPreferences().getBoolean(FIRST_OPEN, true);
+        return getDefaultSharedPreferences().getBoolean(FIRST_OPEN, true);
     }
 
     public static void setUniquePwd(String uniquePwd){
-        getDefaultsharedPreferences().edit().putString(UNIQUE_PWD, uniquePwd).apply();
+        getDefaultSharedPreferences().edit().putString(UNIQUE_PWD, uniquePwd).apply();
     }
     public static String uniquePwd(){
-        return getDefaultsharedPreferences().getString(UNIQUE_PWD, " ");
+        return getDefaultSharedPreferences().getString(UNIQUE_PWD, " ");
     }
 
     public static void setDiaryLock(boolean diaryLock){
-        getDefaultsharedPreferences().edit().putBoolean(DIARY_LOCK, diaryLock).apply();
+        getDefaultSharedPreferences().edit().putBoolean(DIARY_LOCK, diaryLock).apply();
     }
     public static boolean isDiaryLock(){
-        return getDefaultsharedPreferences().getBoolean(DIARY_LOCK, false);
+        return getDefaultSharedPreferences().getBoolean(DIARY_LOCK, false);
     }
 
     public static void setMemoLock(boolean memoLock){
-        getDefaultsharedPreferences().edit().putBoolean(MEMO_LOCK, memoLock).apply();
+        getDefaultSharedPreferences().edit().putBoolean(MEMO_LOCK, memoLock).apply();
     }
     public static boolean isMemoLock(){
-        return getDefaultsharedPreferences().getBoolean(MEMO_LOCK, false);
+        return getDefaultSharedPreferences().getBoolean(MEMO_LOCK, false);
     }
 
     public static void setCipherLock(boolean cipherLock){
-        getDefaultsharedPreferences().edit().putBoolean(CIPHER_LOCK, cipherLock).apply();
+        getDefaultSharedPreferences().edit().putBoolean(CIPHER_LOCK, cipherLock).apply();
     }
     public static boolean isCipherLock(){
-        return getDefaultsharedPreferences().getBoolean(CIPHER_LOCK, false);
+        return getDefaultSharedPreferences().getBoolean(CIPHER_LOCK, false);
     }
 
     public static void setErrorPwdCount(int errorPwdCount){
-        getDefaultsharedPreferences().edit().putInt(ERROR_PWD_COUNT, errorPwdCount).apply();
+        getDefaultSharedPreferences().edit().putInt(ERROR_PWD_COUNT, errorPwdCount).apply();
     }
     public static int getErrorPwdCount(){
-        return getDefaultsharedPreferences().getInt(ERROR_PWD_COUNT, 0);
+        return getDefaultSharedPreferences().getInt(ERROR_PWD_COUNT, 0);
     }
 
     public static void setImitateData(boolean b){
-        getDefaultsharedPreferences().edit().putBoolean(IMITATE_DATA, b).apply();
+        getDefaultSharedPreferences().edit().putBoolean(IMITATE_DATA, b).apply();
     }
     public static boolean isImitateData(){
-        return getDefaultsharedPreferences().getBoolean(IMITATE_DATA, false);
+        return getDefaultSharedPreferences().getBoolean(IMITATE_DATA, false);
     }
 
     public static void setSignInCount(int count){
-        getDefaultsharedPreferences().edit().putInt(SIGN_COUNT, count).apply();
+        getDefaultSharedPreferences().edit().putInt(SIGN_COUNT, count).apply();
     }
 
     public static int getSignInCount(){
-        return getDefaultsharedPreferences().getInt(SIGN_COUNT, 0);
+        return getDefaultSharedPreferences().getInt(SIGN_COUNT, 0);
     }
 
+    public static boolean getIsFirstOpen(){
+        return getDefaultSharedPreferences().getBoolean(INIT_FIRST_OPEN, true);
+    }
+    public static void setIsFirstOpen(boolean b){
+        getDefaultSharedPreferences().edit().putBoolean(INIT_FIRST_OPEN, b).apply();
+    }
+
+    public static int getVersionCode(){
+        return getDefaultSharedPreferences().getInt(INIT_VERSION_CODE, 2);
+    }
+    public static void setVersionCode(int v){
+        getDefaultSharedPreferences().edit().putInt(INIT_VERSION_CODE, v).apply();
+    }
+
+
 }
+
+

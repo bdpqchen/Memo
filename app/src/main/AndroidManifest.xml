@@ -1,67 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.chen.memo">
+    package="com.example.chen.memo">
 
-<application
-    android:allowBackup="true"
-    android:icon="@mipmap/jianji_logo"
-    android:label="@string/app_name"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme.NoActionBar"
-    android:name=".application.CustomApplication"
-    >
-    <activity
-        android:name=".view.splash.SplashActivity"
+    <application
+        android:name="com.example.chen.memo.application.CustomApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/jianji_logo"
         android:label="@string/app_name"
-        android:theme="@style/SplashTheme" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
 
-    <activity android:name=".view.main.MainActivity" />
-    <activity android:name=".view.diary.DiaryActivity"/>
-    <activity android:name=".view.diary.DiaryListActivity"/>
-    <activity android:name=".view.diary.DiaryDetailActivity"/>
-    <activity android:name=".view.memo.MemoActivity"/>
-    <activity android:name=".view.memo.MemoListActivity"/>
-    <activity android:name=".view.memo.AlarmActivity"/>
-    <activity android:name=".view.cipher.CipherListActivity"/>
-    <activity android:name=".view.cipher.CipherActivity"/>
-    <activity android:name=".view.dump.DumpListActivity"/>
-    <activity android:name=".view.settings.SettingsActivity"/>
+        <!--活动-->
+        <activity
+            android:name="com.example.chen.memo.view.splash.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.chen.memo.view.main.MainActivity" />
+        <activity android:name="com.example.chen.memo.view.diary.DiaryActivity" />
+        <activity android:name="com.example.chen.memo.view.diary.DiaryListActivity" />
+        <activity android:name="com.example.chen.memo.view.diary.DiaryDetailActivity" />
+        <activity android:name="com.example.chen.memo.view.memo.MemoActivity" />
+        <activity android:name="com.example.chen.memo.view.memo.MemoListActivity" />
+        <activity android:name="com.example.chen.memo.view.memo.AlarmActivity" />
+        <activity android:name="com.example.chen.memo.view.cipher.CipherListActivity" />
+        <activity android:name="com.example.chen.memo.view.cipher.CipherActivity" />
+        <activity android:name="com.example.chen.memo.view.dump.DumpListActivity" />
+        <activity android:name="com.example.chen.memo.view.settings.SettingsActivity" />
+
+        <!--接收器-->
+        <receiver android:name="com.example.chen.memo.service.AlarmReceiver" />
+
+        <!--服务-->
+        <service android:name=".view.update.UpdateService" android:enabled="true"/>
+
+    </application>
 
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
-    <receiver android:name="com.example.chen.memo.service.AlarmReceiver" />
-
-    <!-- <activity
-         android:name=".MainActivity"
-         android:theme="@style/AppTheme.NoActionBar"/>
-     <activity android:name=".DiaryActivity"
-         android:windowSoftInputMode="adjustResize" />
-     <activity android:name=".ViewDiaryActivity"/>
-     <activity
-         android:name=".DetailActivity"
-         android:windowSoftInputMode="adjustResize" />
-     <activity android:name=".MemoActivity">
-         <receiver
-             android:name=".OneShotAlarm"
-             android:process=":remote" />
-     </activity>
-     <activity android:name=".ViewMemoActivity"/>
-     <activity android:name=".NewActActivity"/>
-     <activity android:name=".SettingsActivity"/>
-     <activity android:name=".ViewCipherActivity"/>
-     <activity android:name=".CipherDetailActivity"/>
-     <activity android:name=".MusicActivity"/>
-     <receiver android:name="com.example.chen.memo.MyReceiver" />-->
-</application>
-
-<uses-permission android:name="android.permission.VIBRATE"/>
-<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-<uses-permission android:name="android.permission.SET_TIME_ZONE"/>
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SET_TIME_ZONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 </manifest>

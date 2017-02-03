@@ -33,6 +33,8 @@ import com.example.chen.memo.view.diary.DiaryListActivity;
 import com.example.chen.memo.view.dump.DumpListActivity;
 import com.example.chen.memo.view.memo.MemoActivity;
 import com.example.chen.memo.view.memo.MemoListActivity;
+import com.example.chen.memo.view.update.SearchUpdate;
+
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -60,12 +62,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         setContentView(R.layout.activity_main);
 
-        //4.4系统会顶出状态栏
+        /*//4.4系统会顶出状态栏
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
-
+*/
         ButterKnife.inject(this);
 
         DatePicker2 picker = (DatePicker2) findViewById(R.id.date_picker);
@@ -98,7 +100,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navView.setNavigationItemSelectedListener(this);
         fab.setOnClickListener(this);
 
+        checkUpdate(2000);
+    }
 
+    public void checkUpdate(int time){
+        SearchUpdate searchUpdate = new SearchUpdate(this);
+        //第二个参数是延迟执行时间
+        searchUpdate.checkUpdate(time);
     }
 
     @Override

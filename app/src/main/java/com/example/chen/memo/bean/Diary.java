@@ -2,8 +2,6 @@ package com.example.chen.memo.bean;
 
 import org.litepal.crud.DataSupport;
 
-import java.util.Date;
-
 /**
  * Created by cdc on 16-9-24.
  */
