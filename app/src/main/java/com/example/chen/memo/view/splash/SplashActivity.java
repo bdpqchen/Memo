@@ -25,8 +25,8 @@ import cn.domob.android.ads.SplashAdListener;
  */
 public class SplashActivity extends Activity {
 
-    private final String PUBLISHER_ID = "56OJ346YuNytZ/1JdW";
-    private final String SplashPPID = "16TLQ3uaApadsNUUqha84M5s";
+    private final String PUBLISHER_ID = "56OJ346YuNySBpPOiJ";
+    private final String SplashPPID = "16TLQ3uaApaaYNUU9oQ5AGks";
     SplashAd splashAd;
     RTSplashAd rtSplashAd;
     //	 缓存开屏广告:true   实时开屏广告:false
@@ -66,8 +66,7 @@ public class SplashActivity extends Activity {
                     jump();
 //					如果应用没有单独的闪屏Activity，需要调用closeRTSplash方法去关闭开屏广告
 //					If you do not carry a separate advertising activity, you need to call closeRTSplash way to close the splash ad
-
-//					rtSplashAd.closeRTSplash();
+					rtSplashAd.closeRTSplash();
                 }
 
                 @Override

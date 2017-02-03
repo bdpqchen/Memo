@@ -45,8 +45,7 @@ public class UpdateService extends Service {
 
         //设置下载地址
         DownloadManager.Request down = new DownloadManager.Request(
-        Uri.parse("https://github.com/bdpqchen/UpdateApps/raw/master/memo/apk/latest.apk"));
-        LogUtils.i("is it working?", "");
+        Uri.parse("https://github.com/bdpqchen/UpdateApps/raw/master/memo/latest/latest.apk"));
         // 设置允许使用的网络类型，这里是移动网络和wifi都可以
         down.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
 
@@ -126,7 +125,7 @@ public class UpdateService extends Service {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setDataAndType(uri, "application/vnd.android.package-archive");
             //不加下面这句话是可以的，查考的里面说如果不加上这句的话在apk安装完成之后点击单开会崩溃
-            // android.os.Process.killProcess(android.os.Process.myPid());
+//             android.os.Process.killProcess(android.os.Process.myPid());
             startActivity(intent);
         }
     }

@@ -25,6 +25,11 @@
                 android:id="@+id/settings"
                 android:icon="@drawable/ic_build_black_24dp"
                 android:title="@string/action_settings" />
+            <item
+                android:id="@+id/action_check_update"
+                android:icon="@drawable/ic_find_replace_black_24dp"
+                android:title="@string/check_update" />
+
         </menu>
     </item>
 </menu>

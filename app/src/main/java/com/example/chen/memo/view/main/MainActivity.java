@@ -24,6 +24,7 @@ import com.example.chen.memo.mydatepicker.DPDecor;
 import com.example.chen.memo.mydatepicker.DatePicker2;
 import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.PrefUtils;
+import com.example.chen.memo.utils.ToastUtils;
 import com.example.chen.memo.view.BaseActivity;
 import com.example.chen.memo.view.cipher.CipherActivity;
 import com.example.chen.memo.view.cipher.CipherListActivity;
@@ -88,6 +89,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             drawerLayout.setClipToPadding(false);
         }
 
+//        ToastUtils.showMessage(this, "This is a new version for you.");
+
         actionsMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
             @Override
             public void onMenuExpanded() {
@@ -120,7 +123,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         TextView tvSignInCount = (TextView) findViewById(R.id.tv_sign_in_count);
         tvSignInCount.setText(PrefUtils.getSignInCount() + "");
 
-
         //将Activity加入activity管理类
         CustomApplication.addActivity(this);
         setSupportActionBar(mToolbar);
@@ -129,7 +131,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
         navView.setNavigationItemSelectedListener(this);
-//        fab.setOnClickListener(this);
 
         checkUpdate(2000);
     }
@@ -173,10 +174,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
             startActivity(DumpListActivity.class);
 
-        }
-
-        else if (id == R.id.settings) {
+        } else if (id == R.id.settings) {
             validatePresenterImpl.setup(this, NextActivity.Settings);
+        } else if (id == R.id.action_check_update){
+            SearchUpdate searchUpdate = new SearchUpdate(this);
+            searchUpdate.checkUpdate(0);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -188,7 +190,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Intent intent = new Intent();
         intent.setClass(this, nextActivity);
         startActivity(intent);
-
     }
 
     @Override

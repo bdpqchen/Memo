@@ -30,7 +30,7 @@ public class SearchUpdate {
 
     private Handler mHandler;
     private Context mContext;
-    private final String version_url = "https://raw.githubusercontent.com/bdpqchen/UpdateApps/master/memo/version/latest.json";
+    private final String version_url = "https://raw.githubusercontent.com/bdpqchen/UpdateApps/master/memo/latest/latest.json";
     private boolean isAuto;
     private DialogInterface.OnClickListener newApkDownLoadListener;
 
