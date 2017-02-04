@@ -3,6 +3,7 @@ package com.example.chen.memo.view.update;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
@@ -40,8 +41,9 @@ public class SearchUpdate {
 
     }
 
-    public void checkUpdate(int delayTime) {
+    public void checkUpdate(final int versionCode, int delayTime) {
 
+        LogUtils.i("versionCode", String.valueOf(versionCode));
         this.isAuto = delayTime != 0;
         this.mHandler = new Handler() {
             @Override
@@ -52,7 +54,7 @@ public class SearchUpdate {
                         //获取成功
                         GithubUpdate githubUpdate = (GithubUpdate) msg.obj;
                         LogUtils.i("gson parse successful", githubUpdate.version_name);
-                        if(githubUpdate.version_code > PrefUtils.getVersionCode()){
+                        if(githubUpdate.version_code > versionCode){
                             showUpdateDialog(githubUpdate.new_features);
                         }else{
                             if (!isAuto){

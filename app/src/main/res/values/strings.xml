@@ -69,5 +69,6 @@
     <string name="write_diary">日记本</string>
     <string name="tips_write_data">还没有数据,快去写一条吧</string>
     <string name="check_update">检查更新</string>
+    <string name="version_name">version:1.1.0</string>
 
 </resources>

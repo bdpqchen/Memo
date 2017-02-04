@@ -2,6 +2,8 @@ package com.example.chen.memo.view.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -13,10 +15,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.application.CustomApplication;
@@ -24,7 +28,6 @@ import com.example.chen.memo.mydatepicker.DPDecor;
 import com.example.chen.memo.mydatepicker.DatePicker2;
 import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.PrefUtils;
-import com.example.chen.memo.utils.ToastUtils;
 import com.example.chen.memo.view.BaseActivity;
 import com.example.chen.memo.view.cipher.CipherActivity;
 import com.example.chen.memo.view.cipher.CipherListActivity;
@@ -66,6 +69,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @InjectView(R.id.white_view)
     View whiteView;
 
+    private int versionCode = 2;
+    private long mExitTime;
 
     protected int getLayout() {
         return R.layout.activity_main;
@@ -88,8 +93,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             //将主页面顶部延伸至status bar;虽默认为false,但经测试,DrawerLayout需显示设置
             drawerLayout.setClipToPadding(false);
         }
-
-//        ToastUtils.showMessage(this, "This is a new version for you.");
 
         actionsMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
             @Override
@@ -136,9 +139,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     public void checkUpdate(int time){
-        SearchUpdate searchUpdate = new SearchUpdate(this);
         //第二个参数是延迟执行时间
-        searchUpdate.checkUpdate(time);
+        PackageManager packageManager = this.getPackageManager();
+        try {
+            PackageInfo info = packageManager.getPackageInfo(this.getPackageName(), 0);
+            this.versionCode = info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        SearchUpdate searchUpdate = new SearchUpdate(this);
+        searchUpdate.checkUpdate(versionCode, time);
     }
 
     @Override
@@ -159,26 +169,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivity(MemoListActivity.class);
             }
         } else if (id == R.id.cipher) {
-
             if (PrefUtils.isCipherLock()) {
                 validatePresenterImpl.login(this, NextActivity.CipherList);
             } else {
                 startActivity(CipherListActivity.class);
             }
         } else if(id == R.id.dump){
-            /* if (PrefUtils.isDumpLock()) {
-                validatePresenterImpl.login(this, NextActivity.CipherList);
-            } else {
-                startActivity(CipherListActivity.class);
-            }*/
-
             startActivity(DumpListActivity.class);
-
         } else if (id == R.id.settings) {
             validatePresenterImpl.setup(this, NextActivity.Settings);
         } else if (id == R.id.action_check_update){
-            SearchUpdate searchUpdate = new SearchUpdate(this);
-            searchUpdate.checkUpdate(0);
+            checkUpdate(0);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -224,8 +225,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
         }
         actionsMenu.collapse();
-
-
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent keyEvent){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            if ((System.currentTimeMillis() - mExitTime) > 1000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                CustomApplication.finishAll();
+            }
+        }
+        return false;
+    }
+
 
 }

@@ -75,13 +75,6 @@ public class PrefUtils {
         return getDefaultSharedPreferences().getInt(ERROR_PWD_COUNT, 0);
     }
 
-    public static void setImitateData(boolean b){
-        getDefaultSharedPreferences().edit().putBoolean(IMITATE_DATA, b).apply();
-    }
-    public static boolean isImitateData(){
-        return getDefaultSharedPreferences().getBoolean(IMITATE_DATA, false);
-    }
-
     public static void setSignInCount(int count){
         getDefaultSharedPreferences().edit().putInt(SIGN_COUNT, count).apply();
     }

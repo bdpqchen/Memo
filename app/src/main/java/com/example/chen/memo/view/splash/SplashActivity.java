@@ -162,15 +162,11 @@ public class SplashActivity extends Activity {
     }
 
     public void initApp() {
-
         SignModelImpl signModel = new SignModelImpl();
         //今天的签到
         signModel.signInToday();
-
         if (PrefUtils.getIsFirstOpen()) {
             PrefUtils.setIsFirstOpen(false);
-            //检查更新版本号，当更改此值时，同时更改getVersionCode的值
-            PrefUtils.setVersionCode(2);
             //首次打开应用，初始化签到数据
             signModel.initSignInData();
         }
