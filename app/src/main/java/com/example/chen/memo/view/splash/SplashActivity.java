@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.model.SignModelImpl;
