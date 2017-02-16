@@ -33,7 +33,6 @@ dependencies {
     compile 'com.wdullaer:materialdatetimepicker:2.5.0'
     compile 'cn.aigestudio.datepicker:DatePicker:2.2.0'
     compile 'com.github.clans:fab:1.6.4'
-    compile files('src/libs/domob_android_sdk.jar')
 
     compile 'com.squareup.okhttp3:okhttp:3.0.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
