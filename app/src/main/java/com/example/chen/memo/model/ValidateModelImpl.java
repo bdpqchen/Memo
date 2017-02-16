@@ -68,12 +68,12 @@ public class ValidateModelImpl implements IValidateModel {
             //隐藏输入法
             try {
                 String pwd = SimpleCrypto.enCrypto(input_pwd, KEY_UNIQUE_PASSWORD);
-                LogUtils.i("input", input_pwd);
-                LogUtils.i("pwd_former", SimpleCrypto.deCrypto(pwd, KEY_UNIQUE_PASSWORD));
-                LogUtils.i("pwd", pwd);
-                LogUtils.i("preference_former", SimpleCrypto.deCrypto(unique_pwd, KEY_UNIQUE_PASSWORD));
-                LogUtils.i("preference ", unique_pwd);
-                //密码验证成功
+//                LogUtils.i("input", input_pwd);
+//                LogUtils.i("pwd_former", SimpleCrypto.deCrypto(pwd, KEY_UNIQUE_PASSWORD));
+//                LogUtils.i("pwd", pwd);
+//                LogUtils.i("preference_former", SimpleCrypto.deCrypto(unique_pwd, KEY_UNIQUE_PASSWORD));
+//                LogUtils.i("preference ", unique_pwd);
+                //密码验证成 功
                 if (pwd.equals(unique_pwd) && !input_pwd.equals("")) {
                     dialog.dismiss();
                     view.hideKeyboard();

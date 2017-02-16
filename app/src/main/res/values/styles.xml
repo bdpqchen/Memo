@@ -28,10 +28,4 @@
         <item name="android:textColor">#ff0000</item>
     </style>
 
-    <style name="menugreen">
-        <item name="fab_colorNormal">#43A047</item>
-        <item name="fab_colorPressed">#2E7D32</item>
-        <item name="fab_colorRipple">#1B5E20</item>
-    </style>
-
 </resources>
