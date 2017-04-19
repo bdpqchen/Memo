@@ -91,7 +91,6 @@ public class ValidatePresenterImpl implements IValidatePresenter {
                 .show();
     }
 
-
     private DialogInterface.OnClickListener choiceListenerFirst = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
@@ -220,5 +219,8 @@ public class ValidatePresenterImpl implements IValidatePresenter {
         loginSuccess();
     }
 
-
+    public void startSettingsActivity() {
+        Intent intent = new Intent(view, SettingsActivity.class);
+        view.startActivity(intent);
+    }
 }

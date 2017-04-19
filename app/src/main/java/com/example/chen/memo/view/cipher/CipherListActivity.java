@@ -39,7 +39,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 import static com.example.chen.memo.application.CustomApplication.RECORD_LIST_LIMIT;

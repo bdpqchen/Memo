@@ -91,7 +91,7 @@ public class PrefUtils {
     }
 
     public static int getVersionCode(){
-        return getDefaultSharedPreferences().getInt(INIT_VERSION_CODE, 2);
+        return getDefaultSharedPreferences().getInt(INIT_VERSION_CODE, 3);
     }
     public static void setVersionCode(int v){
         getDefaultSharedPreferences().edit().putInt(INIT_VERSION_CODE, v).apply();

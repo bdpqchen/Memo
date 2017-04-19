@@ -8,6 +8,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class MemoActivity extends BaseActivity implements CompoundButton.OnCheck
 
     @Override
     protected void onCreate(Bundle savedInstantState) {
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         super.onCreate(savedInstantState);
         mContext = getApplicationContext();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

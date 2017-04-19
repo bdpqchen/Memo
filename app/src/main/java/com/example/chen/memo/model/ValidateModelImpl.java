@@ -16,6 +16,7 @@ import com.example.chen.memo.presenter.ValidatePresenterImpl;
 import com.example.chen.memo.utils.LogUtils;
 import com.example.chen.memo.utils.PrefUtils;
 import com.example.chen.memo.view.main.MainActivity;
+import com.example.chen.memo.view.settings.SettingsActivity;
 
 import org.litepal.crud.DataSupport;
 
@@ -126,8 +127,6 @@ public class ValidateModelImpl implements IValidateModel {
         builder.setView(layout);
         builder.setPositiveButton(R.string.btn_positive, setPwdPositiveListener);
         builder.show();
-
-
     }
 
     private DialogInterface.OnClickListener setPwdPositiveListener = new DialogInterface.OnClickListener() {
@@ -144,8 +143,8 @@ public class ValidateModelImpl implements IValidateModel {
                     PrefUtils.setFirstOpen(false);
                     dialog.dismiss();
                     Toast.makeText(view, R.string.set_pwd_succeed, Toast.LENGTH_LONG).show();
-                    validatePresenter.setupSuccess();
-                    //startActivity(SettingsActivity.class);
+                    validatePresenter.startSettingsActivity();
+
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

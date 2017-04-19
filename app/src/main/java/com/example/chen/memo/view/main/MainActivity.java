@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.chen.memo.R;
 import com.example.chen.memo.application.CustomApplication;
+import com.example.chen.memo.model.SignModelImpl;
 import com.example.chen.memo.mydatepicker.DPDecor;
 import com.example.chen.memo.mydatepicker.DatePicker2;
 import com.example.chen.memo.presenter.ValidatePresenterImpl;
@@ -69,7 +70,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @InjectView(R.id.white_view)
     View whiteView;
 
-    private int versionCode = 2;
+    private int versionCode = 3;
     private long mExitTime;
 
     protected int getLayout() {
@@ -85,7 +86,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        initApp();
         //对于DrawerLayout的沉浸式状态栏,5.0以下问题明显
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
             //将侧边栏顶部延伸至status bar
@@ -225,6 +226,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
         }
         actionsMenu.collapse();
+    }
+
+    public void initApp() {
+        SignModelImpl signModel = new SignModelImpl();
+        //今天的签到
+        signModel.signInToday();
+        if (PrefUtils.getIsFirstOpen()) {
+            PrefUtils.setIsFirstOpen(false);
+            //首次打开应用，初始化签到数据
+        }
+        signModel.initSignInData();
     }
 
     @Override
